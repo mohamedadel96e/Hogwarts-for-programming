@@ -1,0 +1,17 @@
+{
+    "name": "moham/hogwarts-for-programming",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Moham\\HogwartsForProgramming\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohamed Adel",
+            "email": "mohamedadel96e@gmail.com"
+        }
+    ],
+    "require": {}
+}
