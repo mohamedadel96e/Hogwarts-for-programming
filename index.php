@@ -1,34 +1,17 @@
 <?php
 
 use Symfony\Component\VarDumper\VarDumper;
+const BASE_PATH = __DIR__ ;
 
-require 'vendor/autoload.php';
-require 'routes.php';
+require BASE_PATH . '/vendor/autoload.php';
+require BASE_PATH . '/includes/functions.php';
+require BASE_PATH . '/bootstrap.php';
+
+$router = new \Includes\Router();
+require BASE_PATH . '/routes.php';
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 
-
-$request = ($_SERVER['REQUEST_URI']);
-$request = str_replace('/hogwarts-for-programming', '', $request);
-$viewDir = '/views/';
-
-switch ($request) {
-  case '':
-  case '/':
-      require __DIR__ . $viewDir . 'home.php';
-      break;
-
-  case '/dashboard':
-      require __DIR__ . $viewDir . 'dashboard.php';
-      break;
-
-  case '/login':
-      require __DIR__ . $viewDir . '/auth/login.php';
-      break;
-  case '/register':
-      require __DIR__ . $viewDir . 'register.php';
-      break;
-  default:
-      http_response_code(404);
-      require __DIR__ . $viewDir . '404.php';
-}
-
+$router->route($uri, $method);
