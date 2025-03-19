@@ -17,7 +17,7 @@
       if ($stmt->execute([
         'name' => $name,
         'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT),
+        'password' => $password, 
         'house_id' => $houseId,
         'wand_id' => $wandId,
         'balance' => $balance

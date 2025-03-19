@@ -45,7 +45,7 @@
           Create New Account
         </h1>
 
-        <form class="space-y-4 md:space-y-6" id="registerForm" action="register" method="post">
+        <form class="space-y-4 md:space-y-6" id="registerForm" action="/register" method="post">
           <div id="errorMessage" class="hidden p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert"></div>
 
           <div>
@@ -76,7 +76,13 @@
               required>
           </div>
 
-          
+          <?php if (isset($error) && !empty($error)): ?>
+              <div id="errorMessage" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <ul class="list-disc list-inside">
+                    <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
+                </ul>
+              </div>
+            <?php endif; ?>
 
           <button type="submit"
             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">

@@ -53,35 +53,49 @@ class Router
   {
     // dd($uri, $method, $_POST);
     $jwt = $_COOKIE['jwt'] ?? null;
-    
     try {
       $data = null;
       if($jwt)
         $data = AuthMiddleware::validateToken($jwt);
       foreach ($this->routes as $route) {
         if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-          if($data) {
+          if(in_array($uri, Config::ROUTES['public'])) {
+            return require base_path('controllers/'. $route['controller']);
+          }
+          if($data && $data->role) {
             switch ($data->role) {
               case 'student':
                 if(in_array($uri, Config::ROUTES['student'])) {
                   return require base_path('controllers/'. $route['controller']);
+                }
+                if(in_array($uri, Config::ROUTES['auth'])) {
+                  redirect('dashboard');
+                  return require base_path('controllers/' . 'student/dashboard.php');
                 }
                 break;
                 case 'Professor':
                 if(in_array($uri, Config::ROUTES['prof'])) {
                   return require base_path('controllers/'. $route['controller']);
                 }
+                if(in_array($uri, Config::ROUTES['auth'])) {
+                  redirect('dashboard');
+                  return require base_path('controllers/' . 'prof/dashboard.php');
+                }
                 break;
                 case 'admin':
                 if(in_array($uri, Config::ROUTES['admin'])) {
                   return require base_path('controllers/'. $route['controller']);
+                }
+                if(in_array($uri, Config::ROUTES['auth'])) {
+                  redirect('dashboard');
+                  return require base_path('controllers/' . 'admin/dashboard.php');
                 }
                 break;
             }
             $this->abort(403);
           }else {
             // dd($uri, Config::ROUTES['public']);
-            if(in_array($uri, Config::ROUTES['public']))
+            if(in_array($uri, Config::ROUTES['auth']))
               return require base_path('controllers/' . $route['controller']);
             else 
               $this->abort(403);

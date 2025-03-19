@@ -1,12 +1,13 @@
 <?php
-use Config\Config;
+
 use Rakit\Validation\Validator;
 use Controllers\AuthController;
+use Config\Config;
+
 require_once base_path('controllers/AuthController.php');
 $validator = new Validator();
 
 $validation = $validator->make($_POST, [
-  'name' => 'required|min:3|max:50',
   'email' => 'required|email',
   'password' => 'required|min:6',
 ]);
@@ -16,32 +17,30 @@ $validation->validate();
 if ($validation->fails()) {
   // Handle validation errors
   $errors = $validation->errors();
-  view('auth/register.view.php', ['errors' => $errors->firstOfAll()]);
+  view('auth/login.view.php', ['errors' => $errors->firstOfAll()]);
   exit;
 }
 
 // Sanitize input data
-$name = trim(htmlspecialchars($_POST['name']));
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+// dd($email);
+// $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 $password = $_POST['password'];
-
-// Register the student
+// Register the student 
 $authController = new AuthController();
-$result = $authController->register(
-  $name,
+$result = $authController->login(
   $email,
-  $password,
-  1,
-  1
+  $password
 );
 
 if ($result) {
-  // dd($result);
-  // Set the token in a cookie
   if(isset($result['error'])) {
-    view('auth/register.view.php', ['error' => $result['error']]);
+    view('auth/login.view.php', ['error' => $result['error']]);
     exit;
   }
+  
+  // dd($result);
+  // Set the token in a cookie
   setcookie('jwt', $result['token'], time() + Config::JWT_EXPIRATION); 
 
   // Redirect to the dashboard
