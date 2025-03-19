@@ -1,6 +1,5 @@
 <?php
 
-use Symfony\Component\VarDumper\VarDumper;
 const BASE_PATH = __DIR__ ;
 
 require BASE_PATH . '/vendor/autoload.php';

@@ -43,17 +43,14 @@ class AuthMiddleware {
       exit;
     }
   }
-  private $jwtSecret;
 
-  public function __construct($jwtSecret) {
-    $this->jwtSecret = $jwtSecret;
-  }
 
-  public function validateToken($token) {
+  public static function validateToken($token) {
     try {
-      return JWT::decode($token, new Key($this->jwtSecret,'HS256'));
+      return JWT::decode($token, new Key(Config::JWT_SECRET, Config::JWT_ALGORITHM));
     } catch (Exception $e) {
       return ['error' => 'Invalid or expired token'];
     }
   }
+
 }

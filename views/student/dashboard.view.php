@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hogwarts</title>
+  <title>Student dashboard</title>
 </head>
 <body>
-  Welcome to Hogwarts <?= $heading ?> Page
+  Welcome to Student Dashboard Page
 </body>
 </html>

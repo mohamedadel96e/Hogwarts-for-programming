@@ -1,8 +1,11 @@
 <?php
 
 namespace Includes;
-
+require base_path('vendor/autoload.php');
 use \Middleware\AuthMiddleware;
+require base_path('middleware/AuthMiddleware.php');
+use Config\Config;
+require base_path('config/config.php');
 
 
 
@@ -48,11 +51,45 @@ class Router
   }
   public function route($uri, $method)
   {
-    foreach ($this->routes as $route) {
-      if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-
-        return require base_path('controllers/' . $route['controller']);
+    // dd($uri, $method, $_POST);
+    $jwt = $_COOKIE['jwt'] ?? null;
+    
+    try {
+      $data = null;
+      if($jwt)
+        $data = AuthMiddleware::validateToken($jwt);
+      foreach ($this->routes as $route) {
+        if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+          if($data) {
+            switch ($data->role) {
+              case 'student':
+                if(in_array($uri, Config::ROUTES['student'])) {
+                  return require base_path('controllers/'. $route['controller']);
+                }
+                break;
+                case 'Professor':
+                if(in_array($uri, Config::ROUTES['prof'])) {
+                  return require base_path('controllers/'. $route['controller']);
+                }
+                break;
+                case 'admin':
+                if(in_array($uri, Config::ROUTES['admin'])) {
+                  return require base_path('controllers/'. $route['controller']);
+                }
+                break;
+            }
+            $this->abort(403);
+          }else {
+            // dd($uri, Config::ROUTES['public']);
+            if(in_array($uri, Config::ROUTES['public']))
+              return require base_path('controllers/' . $route['controller']);
+            else 
+              $this->abort(403);
+          }
+        }
       }
+    } catch (\Exception $e) {
+      $this->abort(401);
     }
 
     $this->abort();
