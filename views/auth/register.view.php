@@ -45,7 +45,7 @@
           Create New Account
         </h1>
 
-        <form class="space-y-4 md:space-y-6" id="registerForm">
+        <form class="space-y-4 md:space-y-6" id="registerForm" action="register" method="post">
           <div id="errorMessage" class="hidden p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert"></div>
 
           <div>
@@ -76,18 +76,7 @@
               required>
           </div>
 
-          <div class="flex items-start">
-            <div class="flex items-center h-5">
-              <input id="terms" name="terms" type="checkbox"
-                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                required>
-            </div>
-            <div class="ml-3 text-sm">
-              <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
-                I accept the <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Terms & Conditions</a>
-              </label>
-            </div>
-          </div>
+          
 
           <button type="submit"
             class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -103,90 +92,6 @@
     </div>
   </section>
 
-  <script>
-    // Redirect if already logged in
-    if (localStorage.getItem('token')) {
-      window.location.href = '/notes';
-    }
-
-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const errorElement = document.getElementById('errorMessage');
-      errorElement.classList.add('hidden');
-
-      try {
-        // Get form values
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const termsAccepted = document.getElementById('terms').checked;
-
-        // Client-side validation
-        if (!termsAccepted) {
-          throw new Error('You must accept the terms and conditions');
-        }
-
-        if (password !== confirmPassword) {
-          throw new Error('Passwords do not match');
-        }
-
-        if (password.length < 8) {
-          throw new Error('Password must be at least 8 characters');
-        }
-        const wandId = 1;
-        const houseId = 1;
-
-        // Registration API call
-        const registerResponse = await fetch('/hogwarts-for-programming/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-            wandId,
-            houseId
-          })
-        });
-
-        if (!registerResponse.ok) {
-          const errorData = await registerResponse.json();
-          throw new Error(errorData.error || 'Registration failed');
-        }
-
-        // Auto-login after successful registration
-        const loginResponse = await fetch('/hogwarts-for-programming/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email,
-            password
-          })
-        });
-
-        if (!loginResponse.ok) {
-          throw new Error('Registration successful but login failed');
-        }
-
-        // Store token and redirect
-        const {
-          token
-        } = await loginResponse.json();
-        localStorage.setItem('token', token);
-        window.location.href = '/hogwarts-for-programming/dashboard';
-
-      } catch (error) {
-        errorElement.textContent = error.message;
-        errorElement.classList.remove('hidden');
-        console.error('Registration error:', error);
-      }
-    });
-  </script>
 </body>
 
 </html>

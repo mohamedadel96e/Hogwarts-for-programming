@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "Moham\\HogwartsForProgramming\\": "src/",
-            "Includes\\": "Includes/"
+            "Includes\\": "Includes/",
+            "Controllers\\": "controllers/"
         }
     },
     "authors": [
@@ -15,6 +16,12 @@
         }
     ],
     "require": {
-        "firebase/php-jwt": "^6.11"
+        "firebase/php-jwt": "^6.11",
+        "rakit/validation": "^1.4",
+        "illuminate/routing": "^12.3",
+        "illuminate/support": "^12.3",
+        "illuminate/http": "^12.3",
+        "illuminate/events": "^12.3",
+        "illuminate/container": "^12.3"
     }
 }
