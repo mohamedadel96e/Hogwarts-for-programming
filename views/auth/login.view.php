@@ -1,3 +1,6 @@
+<?php 
+  use Config\Config;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +47,7 @@
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Sign in to your account
           </h1>
-          <form class="space-y-4 md:space-y-6" id="loginForm">
+          <form class="space-y-4 md:space-y-6" id="loginForm" action= <?= Config::baseURL . '/login' ?> method="post">
             <div id="errorMessage" class="hidden p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert"></div>
             
             <div>
@@ -59,6 +62,13 @@
                 class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required>
             </div>
+            <?php if (isset($error) && !empty($error)): ?>
+              <div id="errorMessage" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <ul class="list-disc list-inside">
+                    <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
+                </ul>
+              </div>
+            <?php endif; ?>
             <div class="flex items-center justify-between">
               <div class="flex items-start">
                 <div class="flex items-center h-5">
@@ -85,58 +95,6 @@
     </div>
   </section>
 
-  <script>
-    // Check for existing token
-    if(localStorage.getItem('token')) {
-      window.location.href = 'dashboard';
-    }
-
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const errorMessage = document.getElementById('errorMessage');
-      errorMessage.classList.add('hidden');
-
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const rememberMe = document.getElementById('remember').checked;
-
-      try {
-        const response = await fetch('/hogwarts-for-programming/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password
-          })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || 'Login failed');
-        }
-
-        // Store token based on remember me choice
-        if(rememberMe) {
-          // Store in localStorage (persists across sessions)
-          localStorage.setItem('token', data.token);
-        } else {
-          // Store in sessionStorage (clears when browser closes)
-          sessionStorage.setItem('token', data.token);
-        }
-
-        // Redirect to protected page
-        window.location.href = '/notes';
-
-      } catch (error) {
-        errorMessage.textContent = error.message;
-        errorMessage.classList.remove('hidden');
-        console.error('Login error:', error);
-      }
-    });
-  </script>
 </body>
 
 </html>

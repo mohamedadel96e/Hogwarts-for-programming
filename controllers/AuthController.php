@@ -18,15 +18,16 @@
     }
 
     public function register($name, $email, $password, $houseId, $wandId, $balance = 1000) {
-      $result = $this->student->create($name, $email, $password, $houseId, $wandId, $balance);
+      // dd($name, $email, $password, $houseId, $wandId, $balance);
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+      $result = $this->student->create($name, $email, $hashedPassword, $houseId, $wandId, $balance);
       if (isset($result['error'])) {
         return $result;
       }
       return $this->login($email, $password);
     }
 
-    public function login($email, $password) {
-      
+      public function login($email, $password) {
       if(!$email || !$password) {
         return ['error' => 'Email and password are required'];
       }
@@ -36,7 +37,11 @@
       }
       $student = $this->student->getByEmail($email);
 
-      if (!$student || !password_verify($password, $student['password'])) {
+      if (!$student) {
+        return ['error' => 'Email Does not exist'];
+      }
+      // dd($password, $student['password']);
+      if (!password_verify($password, $student['password'])) {
         return ['error' => 'Invalid email or password'];
       }
 
