@@ -10,6 +10,8 @@ $router->post('/register', 'register/store.php');
 $router->get('/logout', 'logout.php');
 
 $router->get('/', 'index.php');
+$router->get('/about', 'about.php');
+$router->get('/history', 'history.php');
 $router->get('/dashboard', 'student/dashboard.php');
 $router->get('/courses', 'courses.php');
 $router->get('/shop', 'shop.php');

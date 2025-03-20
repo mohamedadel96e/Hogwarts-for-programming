@@ -5,8 +5,9 @@ const BASE_PATH = __DIR__ ;
 require BASE_PATH . '/vendor/autoload.php';
 require BASE_PATH . '/includes/functions.php';
 require BASE_PATH . '/bootstrap.php';
+use Includes\Router;
 
-$router = new \Includes\Router();
+$router = new Router();
 require BASE_PATH . '/routes.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
