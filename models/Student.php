@@ -1,6 +1,8 @@
 <?php 
+  // namespace App\Models;
   namespace Models;
   use Includes\Database;
+  use Models\Professor;
   class Student {
     private $db;
 
@@ -9,7 +11,8 @@
     }
 
     public function create($name, $email, $password, $houseId, $wandId, $balance = 1000) {
-      if ($this->emailExists($email)) {
+      $professor = new Professor();
+      if ($this->emailExists($email) || $professor->getByEmail($email)) {
         return ['error' => 'Email already exists'];
       }
       $sql = "INSERT INTO students (name, email, password, house_id, wand_id, balance) VALUES (:name, :email, :password, :house_id, :wand_id, :balance)";

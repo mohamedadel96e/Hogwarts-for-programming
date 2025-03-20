@@ -5,8 +5,10 @@
     "autoload": {
         "psr-4": {
             "Moham\\HogwartsForProgramming\\": "src/",
-            "Includes\\": "Includes/",
-            "Controllers\\": "controllers/"
+            "Includes\\": "./Includes/",
+            "Controllers\\": "./controllers/",
+            "Models\\": "./models/",
+            "App\\": "./"
         }
     },
     "authors": [

@@ -3,9 +3,9 @@
 
   use Firebase\JWT\JWT;
   use Models\Student;
-  require_once base_path('models/Student.php');
   use Models\Professor;
-  require_once base_path('models/Professor.php');
+  // use App\Models\Student;
+  // use App\Models\Professor;
   use Config\Config;
 
   class AuthController {
@@ -38,7 +38,9 @@
       $student = $this->student->getByEmail($email);
 
       if (!$student) {
-        return ['error' => 'Email Does not exist'];
+        view('auth/login.view.php', [
+          'error' => 'Email Does not exist'
+        ]);
       }
       // dd($password, $student['password']);
       if (!password_verify($password, $student['password'])) {
@@ -74,7 +76,7 @@
         'id' => $professor['id'],
         'name' => $professor['name'],
         'email' => $professor['email'],
-        'role' => $professor['role'],
+        'role' => $professor['role'] == 'Professor' ? 'professor' : 'admin',
         'exp' => time() + Config::JWT_EXPIRATION
       ];
 
