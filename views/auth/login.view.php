@@ -39,9 +39,9 @@
 <body class="bg-amber-100 dark:bg-gray-900">
   <section class="bg-amber-100 dark:bg-gray-900">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-red-900 dark:text-amber-500">
-        <img class="w-8 h-8 mr-2"
-          src= './../../assets/photos/hogwarts.jpg'
+      <a href="/" class="flex flex-row items-center mb-6 text-2xl font-semibold text-red-900 dark:text-amber-500">
+        <img class="w-16 h-16 mr-2"
+          src= './../../assets/photos/hogwarts.png'
           alt="logo">
         Hogwarts School of Magic
       </a>
@@ -82,7 +82,7 @@
                   <label for="remember" class="text-red-900 dark:text-amber-500">Remember me</label>
                 </div>
               </div>
-              <a href="#" class="text-sm font-medium text-red-700 hover:text-red-900 dark:text-amber-500 dark:hover:text-amber-300">Forgot password?</a>
+              <a href="/retain/password" class="text-sm font-medium text-red-700 hover:text-red-900 dark:text-amber-500 dark:hover:text-amber-300">Forgot password?</a>
             </div>
             <button type="submit"
               class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800 transition-colors">

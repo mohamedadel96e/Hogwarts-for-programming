@@ -20,10 +20,17 @@ if ($validation->fails()) {
   exit;
 }
 
+$houses = Config::HOUSES;
+
 // Sanitize input data
 $name = trim(htmlspecialchars($_POST['name']));
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = $_POST['password'];
+
+
+// Generate random house ID
+$houseId = array_rand($houses);
+$houseName = $houses[$houseId];
 
 // Register the student
 $authController = new AuthController();
@@ -31,7 +38,7 @@ $result = $authController->register(
   $name,
   $email,
   $password,
-  1,
+  $houseId,
   1
 );
 
@@ -43,9 +50,8 @@ if ($result) {
     exit;
   }
   setcookie('jwt', $result['token'], time() + Config::JWT_EXPIRATION); 
-
   // Redirect to the dashboard
-  redirect('dashboard');
+  redirect('/randomhouse');
   exit;
 } else {
   echo json_encode(['status' => 'error', 'message' => 'Failed to register student']);

@@ -31,13 +31,13 @@
         }
       }
     }
-</script>
+  </script>
 
 <body class="bg-amber-100 dark:bg-gray-900">
   <section class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-red-900 dark:text-amber-500">
-      <img class="w-8 h-8 mr-2"
-        src='./../../assets/photos/hogwarts.jpg'
+    <a href="/" class="flex flex-row items-center mb-6 text-2xl font-semibold text-red-900 dark:text-amber-500">
+      <img class="w-16 h-16 mr-2"
+        src='./../../assets/photos/hogwarts.png'
         alt="logo">
       Hogwarts School of Magic
     </a>
@@ -57,7 +57,7 @@
               class="bg-amber-50 border-2 border-amber-300 text-red-900 text-sm rounded-lg focus:ring-gryffindor-500 focus:border-gryffindor-500 block w-full p-2.5 dark:bg-gray-700 dark:border-amber-500 dark:placeholder-gray-400 dark:text-white"
               placeholder="Harry Botter" required>
           </div>
-          
+
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-red-900 dark:text-amber-500">Email</label>
             <input type="email" name="email" id="email"
@@ -80,12 +80,12 @@
           </div>
 
           <?php if (isset($error) && !empty($error)): ?>
-              <div class="p-4 mb-4 text-sm text-red-900 rounded-lg bg-amber-100 dark:bg-gray-800 dark:text-red-400" role="alert">
-                <ul class="list-disc list-inside">
-                    <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
-                </ul>
-              </div>
-            <?php endif; ?>
+            <div class="p-4 mb-4 text-sm text-red-900 rounded-lg bg-amber-100 dark:bg-gray-800 dark:text-red-400" role="alert">
+              <ul class="list-disc list-inside">
+                <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
+              </ul>
+            </div>
+          <?php endif; ?>
 
           <button type="submit"
             class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800 transition-colors">
