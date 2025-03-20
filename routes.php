@@ -6,6 +6,7 @@ $router->post('/login', 'login/store.php');
 
 $router->get('/register', 'register/create.php');
 $router->post('/register', 'register/store.php');
+$router->get('/randomhouse', 'register/randomhouse.php');
 
 $router->get('/logout', 'logout.php');
 
