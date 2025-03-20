@@ -21,7 +21,20 @@ try {
   <title><?= $title ?></title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gryffindorRed: "#7A0019",
+                        gryffindorGold: "#D4AF37",
+                        darkRed: "#4B000E",
+                        darkGold: "#B8860B"
+                    }
+                }
+            }
+        }
+  </script>
 
 </head>
 
-<body>

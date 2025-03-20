@@ -18,3 +18,9 @@ $router->get('/courses', 'courses.php');
 $router->get('/shop', 'shop.php');
 
 $router->get('/admin', 'notes/index.php');
+$router->get('/admin/professors', 'admin/ProfessorsDash.php');
+
+$router->get('/prof/dashboard', 'prof/dashboard.php');
+$router->get('/prof/dashboard/students', 'prof/dashboard/StudentDash.php');
+$router->get('/prof/dashboard/courses', 'prof/dashboard/CoursesDash.php');
+$router->get('/prof/dashboard/quizez', 'prof/dashboard/QuizzezDash.php');

@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gryffindorRed: "#7A0019",
-                        gryffindorGold: "#D4AF37",
-                        darkRed: "#4B000E",
-                        darkGold: "#B8860B"
-                    }
-                }
-            }
-        }
-    </script>
-</head>
+<?php include base_path('views/partials/header.php') ?>
 
 <body class="flex bg-gray-100 h-screen">
     <aside class="bg-gryffindorRed h-full p-5 text-white w-64 space-y-6">
@@ -32,26 +10,29 @@
                         Students
                     </a>
                 </li>
+                <?php if ($role === 'admin') : ?>
                 <li>
                     <a href="../controllers/ProfessorsDash.php"
                         class="bg-darkRed p-3 rounded text-white block hover:bg-gryffindorGold hover:text-darkRed transition">
                         Professors
                     </a>
                 </li>
+                <?php endif; ?>
+
                 <li>
-                    <a href="/courses"
+                    <a href="/prof/courses"
                         class="bg-darkRed p-3 rounded text-white block hover:bg-gryffindorGold hover:text-darkRed transition">
                         Courses
                     </a>
                 </li>
                 <li>
-                    <a href="/quizzes"
+                    <a href="/prof/quizzes"
                         class="bg-darkRed p-3 rounded text-white block hover:bg-gryffindorGold hover:text-darkRed transition">
                         Quizzes
                     </a>
                 </li>
                 <li>
-                    <a href="/leaderboard"
+                    <a href="/prof/leaderboard"
                         class="bg-darkRed p-3 rounded text-white block hover:bg-gryffindorGold hover:text-darkRed transition">
                         Leaderboard
                     </a>
@@ -62,7 +43,7 @@
     <div class="flex flex-1 flex-col">
         <header class="flex bg-white justify-between p-4 shadow items-center">
             <h1 class="text-gryffindorRed text-xl font-bold">Welcome to Dashboard</h1>
-            <a href="logout.html"
+            <a href="/logout"
                 class="bg-darkGold rounded text-white hover:bg-gryffindorGold hover:text-darkRed px-4 py-2 transition">
                 Logout
             </a>

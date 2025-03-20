@@ -57,6 +57,7 @@ class Router
       $data = null;
       if($jwt)
         $data = AuthMiddleware::validateToken($jwt);
+
       foreach ($this->routes as $route) {
         if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
           if(in_array($uri, Config::ROUTES['public'])) {
@@ -73,7 +74,7 @@ class Router
                   return require base_path('controllers/' . 'student/dashboard.php');
                 }
                 break;
-                case 'Professor':
+                case 'professor':
                 if(in_array($uri, Config::ROUTES['prof'])) {
                   return require base_path('controllers/'. $route['controller']);
                 }

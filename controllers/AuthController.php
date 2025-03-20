@@ -68,10 +68,12 @@
 
     private function professorLogin($email, $password) {
       $professor = $this->professor->getByEmail($email);
-      if (!$professor || !password_verify($password, $professor['password'])) {
-        return ['error' => 'Invalid email or password'];
+      if (!$professor || $password !== $professor['password']) {
+        view('auth/login.view.php', [
+          'error' => 'Invalid email or password'
+        ]);
       }
-
+      // dd($professor);
       $payload = [
         'id' => $professor['id'],
         'name' => $professor['name'],
@@ -85,6 +87,7 @@
         key: Config::JWT_SECRET, 
         alg: Config::JWT_ALGORITHM
       );
+      setcookie('jwt', $token, time() + Config::JWT_EXPIRATION);
       redirect('/');
       return ['token' => $token, 'message' => 'Login successful'];
     }
