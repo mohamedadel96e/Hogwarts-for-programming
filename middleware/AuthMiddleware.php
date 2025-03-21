@@ -53,4 +53,8 @@ class AuthMiddleware {
     }
   }
 
+  public static function generateToken($payload) {
+    return JWT::encode($payload, Config::JWT_SECRET, Config::JWT_ALGORITHM);
+  }
+
 }
