@@ -1,5 +1,5 @@
 <?php
-view("prof/dashboard.view.php", [
+view("prof/studentDash.view.php", [
     'heading' => 'Students'
 ]);
 ?>

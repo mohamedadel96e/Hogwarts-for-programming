@@ -6,7 +6,7 @@ $router->post('/login', 'login/store.php');
 
 $router->get('/register', 'register/create.php');
 $router->post('/register', 'register/store.php');
-$router->get('/randomhouse', 'register/randomhouse.php');
+$router->get('/randomhouse', 'register/randomHouse.php');
 
 $router->get('/logout', 'logout.php');
 
@@ -21,6 +21,7 @@ $router->get('/admin', 'notes/index.php');
 $router->get('/admin/professors', 'admin/ProfessorsDash.php');
 
 $router->get('/prof/dashboard', 'prof/dashboard.php');
-$router->get('/prof/dashboard/students', 'prof/dashboard/StudentDash.php');
+$router->get('/prof/dashboard/students', 'prof/dashboard/StudentsDash.php');
 $router->get('/prof/dashboard/courses', 'prof/dashboard/CoursesDash.php');
-$router->get('/prof/dashboard/quizez', 'prof/dashboard/QuizzezDash.php');
+$router->get('/prof/dashboard/quizzes', 'prof/dashboard/QuizzesDash.php');
+$router->get('/prof/dashboard/leaderboard', 'prof/dashboard/LeaderboardDash.php');

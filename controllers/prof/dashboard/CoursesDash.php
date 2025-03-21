@@ -1,4 +1,4 @@
 <?php
-view("prof/dashboard.view.php", [
-    'heading' => 'Courses'  
+view("prof/coursesDash.view.php", [
+    'heading' => 'Courses'
 ]);
