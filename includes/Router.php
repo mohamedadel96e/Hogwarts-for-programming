@@ -55,50 +55,50 @@ class Router
     $jwt = $_COOKIE['jwt'] ?? null;
     try {
       $data = null;
-      if($jwt)
+      if ($jwt)
         $data = AuthMiddleware::validateToken($jwt);
 
       foreach ($this->routes as $route) {
         if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-          if(in_array($uri, Config::ROUTES['public'])) {
-            return require base_path('controllers/'. $route['controller']);
+          if (in_array($uri, Config::ROUTES['public'])) {
+            return require base_path('controllers/' . $route['controller']);
           }
-          if($data && $data->role) {
+          if ($data && $data->role) {
             switch ($data->role) {
               case 'student':
-                if(in_array($uri, Config::ROUTES['student'])) {
-                  return require base_path('controllers/'. $route['controller']);
+                if (in_array($uri, Config::ROUTES['student'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
-                if(in_array($uri, Config::ROUTES['auth'])) {
+                if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'student/dashboard.php');
                 }
                 break;
-                case 'professor':
-                if(in_array($uri, Config::ROUTES['prof'])) {
-                  return require base_path('controllers/'. $route['controller']);
+              case 'professor':
+                if (in_array($uri, Config::ROUTES['prof'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
-                if(in_array($uri, Config::ROUTES['auth'])) {
+                if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'prof/dashboard.php');
                 }
                 break;
-                case 'admin':
-                if(in_array($uri, Config::ROUTES['admin'])) {
-                  return require base_path('controllers/'. $route['controller']);
+              case 'admin':
+                if (in_array($uri, Config::ROUTES['admin'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
-                if(in_array($uri, Config::ROUTES['auth'])) {
+                if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'admin/dashboard.php');
                 }
                 break;
             }
             $this->abort(403);
-          }else {
+          } else {
             // dd($uri, Config::ROUTES['public']);
-            if(in_array($uri, Config::ROUTES['auth']))
+            if (in_array($uri, Config::ROUTES['auth']))
               return require base_path('controllers/' . $route['controller']);
-            else 
+            else
               $this->abort(403);
           }
         }
