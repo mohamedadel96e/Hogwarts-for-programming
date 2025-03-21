@@ -1,8 +1,11 @@
 <?php
 // namespace App\Models;
 namespace Models;
+
+
 use Includes\Database;
 use Models\Professor;
+
 class Student
 {
   private $db;
@@ -20,16 +23,16 @@ class Student
     }
     $sql = "INSERT INTO students (name, email, password, house_id, wand_id, balance) VALUES (:name, :email, :password, :house_id, :wand_id, :balance)";
     $stmt = $this->db->prepare($sql);
-    if (
-      $stmt->execute([
-        'name' => $name,
-        'email' => $email,
-        'password' => $password,
-        'house_id' => $houseId,
-        'wand_id' => $wandId,
-        'balance' => $balance
-      ])
-    ) {
+
+    if ($stmt->execute([
+      'name' => $name,
+      'email' => $email,
+      'password' => $password,
+      'house_id' => $houseId,
+      'wand_id' => $wandId,
+      'balance' => $balance
+    ])) {
+
       return ['message' => 'Student registered successfully'];
     } else {
       return ['error' => 'Registration failed'];
@@ -66,6 +69,7 @@ class Student
     ]);
   }
 
+
   public function delete($id)
   {
     $sql = "DELETE FROM students WHERE id = :id";
@@ -85,11 +89,13 @@ class Student
     return null;
   }
 
+
   private function emailExists($email)
   {
     $sql = "SELECT * FROM students WHERE email = :email";
     $stmt = $this->db->prepare($sql);
     $stmt->execute(['email' => $email]);
+
     return $stmt->fetch() ? true : false;
   }
 
@@ -101,7 +107,17 @@ class Student
     return $stmt->fetch();
   }
 
+  public function updateProfilePic($id, $filename)
+  {
+    $sql = "UPDATE students SET profilePicture = :filename WHERE id = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['id' => $id, 'filename' => $filename]);
+  }
 
-
+  public function updateName($id, $name)
+  {
+    $sql = "UPDATE students SET name = :name WHERE id = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['id' => $id, 'name' => $name]);
+  }
 }
-
