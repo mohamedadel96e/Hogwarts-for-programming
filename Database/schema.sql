@@ -26,7 +26,8 @@ CREATE TABLE students (
     house_id INT,
     wand_id INT,
     balance INT NOT NULL DEFAULT 1000,
-    status ENUM ('active', 'inactive'),
+    profilePicture VARCHAR(255) DEFAULT 'default.png',
+    status ENUM ('active', 'inactive') DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (house_id) REFERENCES houses(id) ON DELETE SET NULL,
@@ -40,6 +41,7 @@ CREATE TABLE professors (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
+    profilePicture VARCHAR(255) DEFAULT 'default.png',
     password VARCHAR(255) NOT NULL,
     role ENUM('Professor', 'Chairman') DEFAULT 'Professor'
 );
@@ -118,3 +120,14 @@ CREATE TABLE student_inventory (
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (item_id) REFERENCES shop_items(id) ON DELETE CASCADE
 );
+
+
+INSERT INTO houses (name) VALUES ('Gryffindor'), ('Slytherin'), ('Ravenclaw'), ('Hufflepuff');
+
+INSERT INTO wands (wood, core) VALUES
+('Holly', 'Phoenix Feather'),
+('Yew', 'Dragon Heartstring'),
+('Elder', 'Unicorn Hair'),
+('Willow', 'Thestral Tail Hair'),
+('Hawthorn', 'Phoenix Feather'),
+('Oak', 'Dragon Heartstring');

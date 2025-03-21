@@ -54,6 +54,7 @@
         'house_id' => $student['house_id'],
         'wand_id' => $student['wand_id'],
         'balance' => $student['balance'],
+        'profilePic' => $student['profilePicture'],
         'role' => 'student',
         'exp' => time() + Config::JWT_EXPIRATION
       ];
@@ -78,6 +79,7 @@
         'id' => $professor['id'],
         'name' => $professor['name'],
         'email' => $professor['email'],
+        'profilePic' => $professor['profilePicture'],
         'role' => $professor['role'] == 'Professor' ? 'professor' : 'admin',
         'exp' => time() + Config::JWT_EXPIRATION
       ];

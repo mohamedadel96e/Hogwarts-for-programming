@@ -8,6 +8,8 @@ $router->get('/register', 'register/create.php');
 $router->post('/register', 'register/store.php');
 $router->get('/randomhouse', 'register/randomhouse.php');
 
+$router->get('/profile', 'profile.php');
+$router->post('/profile', 'profile.php');
 $router->get('/logout', 'logout.php');
 
 $router->get('/', 'index.php');
