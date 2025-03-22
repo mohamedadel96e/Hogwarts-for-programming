@@ -73,9 +73,10 @@ class Router
                   return require base_path('controllers/' . 'student/dashboard.php');
                 }
                 break;
-                case 'Professor':
-                if(in_array($uri, Config::ROUTES['prof'])) {
-                  return require base_path('controllers/'. $route['controller']);
+
+              case 'Professor':
+                if (in_array($uri, Config::ROUTES['prof'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
                 if(in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
@@ -89,6 +90,9 @@ class Router
                 if(in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'admin/dashboard.php');
+                }
+                if (in_array($uri, Config::ROUTES['prof'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
                 break;
             }
