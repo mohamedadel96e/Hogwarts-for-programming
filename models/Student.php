@@ -129,4 +129,26 @@ class Student
     $stmt->execute(['id' => $id, 'status' => $status]);
   }
 
+  public function getByCourse($courseId)
+  {
+    $sql = "SELECT * FROM students s JOIN enrollments e ON s.id = e.student_id JOIN courses c ON e.course_id = c.id WHERE c.id = :course_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['course_id' => $courseId]);
+    return $stmt->fetchAll();
+  }
+
+  public function enroll($studentId, $courseId)
+  {
+    $sql = "INSERT INTO enrollments (student_id, course_id) VALUES (:student_id, :course_id)";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['student_id' => $studentId, 'course_id' => $courseId]);
+  }
+
+  public function getByHouse($houseId)
+  {
+    $sql = "SELECT * FROM students WHERE house_id = :house_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['house_id' => $houseId]);
+    return $stmt->fetchAll();
+  }
 }

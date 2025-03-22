@@ -23,8 +23,11 @@ $router->get('/admin', 'notes/index.php');
 $router->get('/admin/professors', 'admin/ProfessorsDash.php');
 
 $router->get('/prof/dashboard', 'prof/dashboard.php');
-$router->get('/add-student', 'prof/addStudent.php');
+$router->post('/add-student', 'students/addStudent.php');
 $router->get('/prof/dashboard/students', 'prof/dashboard/StudentsDash.php');
+$router->patch('/prof/dashboard/students', 'student/update.php');
 $router->get('/prof/dashboard/courses', 'prof/dashboard/CoursesDash.php');
+$router->post('/add-course', 'courses/addCourse.php');
 $router->get('/prof/dashboard/quizzes', 'prof/dashboard/QuizzesDash.php');
+$router->post('/add-quiz', 'quizzes/addQuiz.php');
 $router->get('/prof/dashboard/leaderboard', 'prof/dashboard/LeaderboardDash.php');
