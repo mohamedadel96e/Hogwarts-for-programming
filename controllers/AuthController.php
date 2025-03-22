@@ -27,6 +27,16 @@
       return $this->login($email, $password);
     }
 
+
+    public function registerOnly($name, $email, $password, $houseId, $wandId, $balance = 1000) {
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+      $result = $this->student->create($name, $email, $hashedPassword, $houseId, $wandId, $balance);
+      if (isset($result['error'])) {
+        return $result;
+      }
+      return $result;
+    }
+
       public function login($email, $password) {
       if(!$email || !$password) {
         return ['error' => 'Email and password are required'];

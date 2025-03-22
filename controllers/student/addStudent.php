@@ -26,32 +26,30 @@ $houses = Config::HOUSES;
 $name = trim(htmlspecialchars($_POST['name']));
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = $_POST['password'];
+$houseId = $_POST['house_id'];
+$balance = $_POST['balance'];
 
-
-// Generate random house ID
-$houseId = array_rand($houses);
-$houseName = $houses[$houseId];
 
 // Register the student
 $authController = new AuthController();
-$result = $authController->register(
+$result = $authController->registerOnly(
     $name,
     $email,
     $password,
     $houseId,
-    1
+    1,
+    $balance
 );
 
 if ($result) {
     // dd($result);
     // Set the token in a cookie
     if (isset($result['error'])) {
-        view('prof\studentDash.view.php', ['error' => $result['error']]);
+        view('prof/studentDash.view.php', ['error' => $result['error']]);
         exit;
     }
-    setcookie('jwt', $result['token'], time() + Config::JWT_EXPIRATION);
     // Redirect to the dashboard
-    redirect('prof\studentDash.view.php');
+    redirect('/prof/dashboard/students');
     exit;
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Failed to register student']);

@@ -74,7 +74,7 @@ class Router
                 }
                 break;
 
-              case 'Professor':
+              case 'professor':
                 if (in_array($uri, Config::ROUTES['prof'])) {
                   return require base_path('controllers/' . $route['controller']);
                 }
