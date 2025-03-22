@@ -3,7 +3,7 @@
 
 <div class="flex min-h-screen bg-gray-900">
     <!-- Sticky Sidebar -->
-    <div class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px] bg-gradient-to-b from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
+    <div class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px]  from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
         <div class="relative h-full bg-gray-900 flex flex-col space-y-6 p-6 overflow-y-auto">
             <!-- House Crest Section -->
             <div class="mb-8 pt-4">
