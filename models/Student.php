@@ -24,14 +24,16 @@ class Student
     $sql = "INSERT INTO students (name, email, password, house_id, wand_id, balance) VALUES (:name, :email, :password, :house_id, :wand_id, :balance)";
     $stmt = $this->db->prepare($sql);
 
-    if ($stmt->execute([
-      'name' => $name,
-      'email' => $email,
-      'password' => $password,
-      'house_id' => $houseId,
-      'wand_id' => $wandId,
-      'balance' => $balance
-    ])) {
+    if (
+      $stmt->execute([
+        'name' => $name,
+        'email' => $email,
+        'password' => $password,
+        'house_id' => $houseId,
+        'wand_id' => $wandId,
+        'balance' => $balance
+      ])
+    ) {
 
       return ['message' => 'Student registered successfully'];
     } else {
@@ -120,4 +122,11 @@ class Student
     $stmt = $this->db->prepare($sql);
     $stmt->execute(['id' => $id, 'name' => $name]);
   }
+  public function updateStatus($id, $status)
+  {
+    $sql = "UPDATE students SET status = :status WHERE id = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['id' => $id, 'status' => $status]);
+  }
+
 }

@@ -57,7 +57,6 @@ class Router
       $data = null;
       if ($jwt)
         $data = AuthMiddleware::validateToken($jwt);
-
       foreach ($this->routes as $route) {
         if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
           if (in_array($uri, Config::ROUTES['public'])) {
@@ -74,7 +73,7 @@ class Router
                   return require base_path('controllers/' . 'student/dashboard.php');
                 }
                 break;
-              case 'professor':
+              case 'Professor':
                 if (in_array($uri, Config::ROUTES['prof'])) {
                   return require base_path('controllers/' . $route['controller']);
                 }
@@ -90,6 +89,9 @@ class Router
                 if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'admin/dashboard.php');
+                }
+                if (in_array($uri, Config::ROUTES['prof'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
                 break;
             }
