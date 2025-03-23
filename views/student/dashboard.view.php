@@ -1,6 +1,7 @@
 <?php include base_path('views/partials/header.php') ?>
 <?php include base_path('views/partials/navbar.php') ?>
 
+
 <div class="flex min-h-screen bg-gray-900">
     <!-- Sticky Sidebar -->
     <div class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px]  from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
@@ -127,6 +128,8 @@
             </div>
         </div>
 
+
+
         <!-- Content Sections -->
         <div class="text-white">
             <!-- Quizzes Table -->
@@ -174,31 +177,46 @@
 
             <!-- Courses Section -->
             <br>
-            <h2 class="text-4xl font-bold text-amber-400" id="courses">Courses</h2>
-            <div class="flex flex-wrap justify-center gap-8 m-4">
-                <?php foreach ($courses as $course): ?>
-                    <div class="group p-[2px] bg-gradient-to-r from-amber-600/40 to-red-700/40 rounded-lg shadow-lg shadow-red-800/50 hover:shadow-red-700/60 transition-all duration-300">
-                        <div class="w-full h-48 sm:w-64 md:w-64 lg:w-80 bg-gray-900 rounded-lg overflow-hidden">
-                            <div class="p-4">
-                                <h2 class="text-xl font-bold bg-gradient-to-r from-amber-500 to-red-600 bg-clip-text text-transparent">
-                                    <?= $course->name ?>
-                                </h2>
-                                <p class="mt-2 font-medium text-amber-400"><?= \Config\Config::HOUSES[$user->house_id] ?></p>
-                                <p class="mt-2 font-medium text-amber-400">Prof. <?= $course->professor ?></p>
-                                <div class="mt-6">
-                                    <a href="#" class="inline-flex items-center text-sm bg-gradient-to-r from-amber-600 to-red-700 bg-clip-text text-transparent font-semibold hover:text-amber-500 transition-colors duration-200">
-                                        <?= $user->courses->contains($course->id) ? 'Enrolled' : 'Enroll' ?>
-                                        <svg class="w-4 h-4 ml-2 text-red-600 group-hover:text-amber-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+        <h2 class="text-4xl font-bold text-slytherin" id="courses">
+            Courses
+        </h2>
+        <div class="flex flex-wrap justify-center gap-8 m-4">
+            <!-- Course Card 1 -->
+            <?php if (!empty($courses)): ?>
+            <?php foreach ($courses as $course): ?>
+            <div class="group p-[2px] bg-gradient-to-r from-amber-600/40 to-red-700/40 rounded-lg shadow-lg shadow-red-800/50 hover:shadow-red-700/60 transition-all duration-300">
+                <div class="w-full h-48 sm:w-64 md:w-64 lg:w-80 bg-gray-900 rounded-lg overflow-hidden">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold bg-gradient-to-r from-amber-500 to-red-600 bg-clip-text text-transparent">
+                            <?= htmlspecialchars($course['course_name']) ?>
+                        </h2>
+                        <p class="mt-2 font-medium text-amber-400"><?= htmlspecialchars($course['professor_name']) ?></p>
+                        <p class="mt-2 font-medium text-amber-400"><?= htmlspecialchars($course['descr']) ?></p>
+                        <div class="mt-6">
+                            
+                        <?php if ($course['stat'] === null): ?>
 
+                            <form method="POST" action="/enroll">
+                                    <input type="hidden" name="course_id" 
+                                        value="<?= $course['course_id'] ?>">
+                                    <input type="hidden" name="enroll" value="1">
+                                    <button type="submit" class="enroll-btn">
+                                        Enroll Now
+                                    </button>
+                                </form>
+                            <?php else: ?>
+                                <div>
+                                    Enrolled
+                                </div>
+                            <?php endif; ?>
+            <?php endforeach; ?>
+
+            <?php else: ?>
+                <div class="text-center text-amber-400">
+                    No courses available
+                </div>
+            <?php endif; ?>
+            
             <!-- Quizzes Section -->
             <br>
             <h2 class="text-4xl font-bold text-white" id="quizzes">Available Quizzes</h2>
@@ -223,6 +241,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
