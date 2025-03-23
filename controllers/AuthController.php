@@ -75,6 +75,7 @@
         'house_id' => $student['house_id'],
         'wand_id' => $student['wand_id'],
         'balance' => $student['balance'],
+        'status' => $student['status'],
         'profilePic' => $student['profilePicture'],
         'role' => 'student',
         'exp' => time() + Config::JWT_EXPIRATION

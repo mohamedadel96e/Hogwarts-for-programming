@@ -43,21 +43,17 @@ $houses = $HousesModel->getAll();
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 rounded-lg bg-gradient-to-r <?= $houseColors[$house['name']] ?? '' ?> flex items-center justify-center">
                                         <?php if($house['name'] === 'Gryffindor'): ?>
-                                            <svg class="w-6 h-6 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-                                            </svg>
+                                            <img src="../../assets/photos/<?= $house['name'] ?>.png" class="w-8 h-8 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            </img>
                                         <?php elseif($house['name'] === 'Slytherin'): ?>
-                                            <svg class="w-6 h-6 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"/>
-                                            </svg>
+                                            <img src="../../assets/photos/<?= $house['name'] ?>.png" class="w-8 h-8 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            </img>
                                         <?php elseif($house['name'] === 'Hufflepuff'): ?>
-                                            <svg class="w-6 h-6 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
-                                            </svg>
+                                            <img src="../../assets/photos/<?= $house['name'] ?>.png" class="w-8 h-8 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            </img>
                                         <?php else: ?>
-                                            <svg class="w-6 h-6 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                                            </svg>
+                                            <img src="../../assets/photos/<?= $house['name'] ?>.png" class="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            </img>
                                         <?php endif; ?>
                                     </div>
                                     <?= htmlspecialchars($house['name']) ?>

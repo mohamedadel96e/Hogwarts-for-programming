@@ -93,20 +93,20 @@
                 <div id="profilePreview" class="hidden bg-gray-800 rounded-xl p-6 mb-8 shadow-xl border border-amber-600/30 transition-all duration-300">
                     <div class="flex items-center space-x-6">
                         <?php if ($user->profilePic): ?>
-                            <img src="<?= '/uploads/' . htmlspecialchars($user->profilePic) ?>" alt="Profile" class="w-24 h-24 rounded-full border-4 border-amber-500 object-cover">
+                            <img src="<?= '/uploads/' . ($user->profilePic) ?>" alt="Profile" class="w-24 h-24 rounded-full border-4 border-amber-500 object-cover">
                         <?php else: ?>
                             <img src="<?= '/uploads/default.png' ?>" alt="Profile" class="w-24 h-24 rounded-full border-4 border-amber-500">
                         <?php endif; ?>
                         <div class="space-y-2 flex-1">
-                            <h2 class="text-3xl font-bold text-amber-400"><?= htmlspecialchars($user->name) ?></h2>
-                            <p class="text-gray-300"><?= htmlspecialchars(\Config\Config::HOUSES[$user->house_id]) ?> House</p>
+                            <h2 class="text-3xl font-bold text-amber-400"><?= ($user->name) ?></h2>
+                            <p class="text-gray-300"><?= (\Config\Config::HOUSES[$user->house_id]) ?> House</p>
                             <div class="flex flex-wrap gap-4 text-gray-400">
                                 <span class="flex items-center">
                                     <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                     </svg>
-                                    <?= htmlspecialchars($user->email) ?>
+                                    <?= ($user->email) ?>
                                 </span>
                                 <span class="flex items-center">
                                     💵 Balance: ₲<?= number_format($user->balance, 2) ?>
@@ -119,6 +119,7 @@
                             </button>
                             <form action="/profile" method="POST" onsubmit="return confirm('Are you sure you want to delete your profile?');">
                                 <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="id" value="<?= $user->id ?>">
                                 <button type="submit" class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
                                     Delete Profile
                                 </button>
@@ -156,14 +157,14 @@
                 <div class="flex flex-col gap-4 h-full">
                     <!-- Content Section -->
                     <div class="flex-1">
-                        <h3 class="text-2xl font-bold text-amber-400"><?= htmlspecialchars($course['course_name']) ?></h3>
+                        <h3 class="text-2xl font-bold text-amber-400"><?= ($course['course_name']) ?></h3>
                         <div class="space-y-2 mt-4">
-                            <p class="text-gray-300"><?= htmlspecialchars($course['descr']) ?></p>
+                            <p class="text-gray-300"><?= ($course['descr']) ?></p>
                             <div class="flex items-center gap-2 text-amber-400">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
-                                <span><?= htmlspecialchars($course['professor_name']) ?></span>
+                                <span><?= ($course['professor_name']) ?></span>
                             </div>
                         </div>
                     </div>
@@ -207,12 +208,12 @@
                             <?php foreach ($quizzes as $quiz): ?>
                                 <div class="bg-gray-800 rounded-xl p-6 border border-amber-600/30 hover:border-amber-500 transition-all duration-300">
                                     <div class="flex justify-between items-start mb-4">
-                                        <h4 class="text-xl font-semibold text-amber-300"><?= htmlspecialchars($quiz['name']) ?></h4>
+                                        <h4 class="text-xl font-semibold text-amber-300"><?= ($quiz['name']) ?></h4>
                                         <span class="px-3 py-1 text-sm rounded-full bg-red-800/30 text-red-400">
-                                            <?= htmlspecialchars($quiz['course_name']) ?>
+                                            <?= ($quiz['course_name']) ?>
                                         </span>
                                     </div>
-                                    <p class="text-gray-300 mb-4"><?= htmlspecialchars($quiz['description']) ?></p>
+                                    <p class="text-gray-300 mb-4"><?= ($quiz['description']) ?></p>
                                     <div class="flex justify-between items-center">
                                         <span class="text-amber-400">★ <?= $quiz['points'] ?> Points</span>
                                         <a href="/quiz/<?= $quiz['id'] ?>" class="bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
@@ -254,7 +255,7 @@
                                         <td class="px-8 py-4 text-sm font-medium">
                                             <div class="flex items-center gap-4">
                                                 <span class="text-amber-400">★</span>
-                                                <?= htmlspecialchars($attempt['quiz_name']) ?>
+                                                <?= ($attempt['quiz_name']) ?>
                                             </div>
                                         </td>
                                         <td class="px-8 py-4 text-center">

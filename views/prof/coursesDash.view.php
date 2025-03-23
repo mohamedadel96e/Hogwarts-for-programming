@@ -71,7 +71,7 @@ $courses = $coursesModel->getAll();
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
-                <?= htmlspecialchars($heading) ?> Registry
+                <?= ($heading) ?> Registry
             </h2>
         </div>
 
@@ -89,17 +89,17 @@ $courses = $coursesModel->getAll();
                     <?php foreach ($courses as $course): ?>
                         <?php $professor = $profModel->get((int)$course['professor_id']); ?>
                         <tr class="hover:bg-gray-50/50 transition-colors group">
-                            <td class="p-5 font-mono text-gray-500">#<?= htmlspecialchars($course['id']) ?></td>
+                            <td class="p-5 font-mono text-gray-500">#<?= ($course['id']) ?></td>
                             <td class="p-5 font-semibold text-gray-900 flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-lg bg-gryffindorRed/10 flex items-center justify-center">
                                     <svg class="w-6 h-6 text-gryffindorRed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                                     </svg>
                                 </div>
-                                <?= htmlspecialchars($course['name']) ?>
+                                <?= ($course['name']) ?>
                             </td>
                             <td class="p-5 text-gray-600 max-w-[400px]">
-                                <?= htmlspecialchars($course['description']) ?>
+                                <?= ($course['description']) ?>
                             </td>
                             <td class="p-5">
                                 <div class="flex items-center gap-3">
@@ -108,7 +108,7 @@ $courses = $coursesModel->getAll();
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                         </svg>
                                     </div>
-                                    <span class="font-medium"><?= htmlspecialchars($professor['name']) ?></span>
+                                    <span class="font-medium"><?= ($professor['name']) ?></span>
                                 </div>
                             </td>
                         </tr>
