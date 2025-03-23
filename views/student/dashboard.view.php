@@ -2,6 +2,7 @@
 <?php include base_path('views/partials/navbar.php') ?>
   <div class="flex min-h-screen bg-gray-900">
     <!-- Sticky Sidebar (Keep existing structure) -->
+
     <div class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px]  from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
       <div class="relative h-full bg-gray-900 flex flex-col space-y-6 p-6 overflow-y-auto">
         <!-- House Crest Section -->
@@ -11,6 +12,7 @@
             <p class="text-sm mt-1 text-amber-400">Portal</p>
           </div>
         </div>
+
 
         <!-- Navigation Links -->
         <nav class="flex-1">
@@ -24,11 +26,13 @@
                                 group-hover:from-amber-300 group-hover:to-red-200 transition-all">
                                 🛒 Shop
                             </span>
+
                 <div class="ml-auto text-amber-500/80 group-hover:text-amber-400 transition-colors">
                   $<?= $userDB['balance'] ?>
                 </div>
               </a>
             </li>
+
 
 
             <li>
@@ -95,12 +99,14 @@
                                     <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+
                                     </svg>
                                     <?= ($userDB['email']) ?>
                                 </span>
                   <span class="flex items-center">
                                     💵 Balance: ₲<?= number_format($userDB['balance'], 2) ?>
                                 </span>
+
                 </div>
               </div>
               <div class="flex flex-col gap-4">
@@ -136,6 +142,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
               </svg>
+
             </div>
           </div>
         </div>
@@ -178,6 +185,7 @@
                           Enroll Now
                         </button>
                       </form>
+
                     <?php else: ?>
                       <div class="px-4 py-2 bg-green-800/30 text-green-400 rounded-lg text-center">
                         Enrolled
@@ -233,6 +241,7 @@
                               class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
                         Submit Solution
                       </button>
+
                     </div>
                   </form>
                 <?php endforeach; ?>
@@ -294,6 +303,7 @@
                     </td>
                     <td class="px-8 py-4 text-center">
                                             <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+
                                                 <?= $attempt['score'] ?> pts
                                             </span>
                     </td>
