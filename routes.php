@@ -55,3 +55,5 @@ $router->get('/professors/show', 'professors/show.php');
 $router->put('/professors', 'professors/update.php');
 $router->delete('/professors', 'professors/delete.php');
 
+
+$router->post('/shop/purchase', '/student/shop.php');

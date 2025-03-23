@@ -176,6 +176,11 @@ class Student
     $stmt = $this->db->prepare($sql);
     $stmt->execute(['points' => $points, 'student_id' => $studentId]);
   }
-
+  public function updateBalance($studentId, $balance): void
+  {
+    $sql = "UPDATE students SET balance = :balance WHERE id = :student_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['balance' => $balance, 'student_id' => $studentId]);
+  }
   
 }
