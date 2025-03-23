@@ -21,7 +21,7 @@
           <div class="relative group">
             <label for="avatar" class="cursor-pointer">
               <img
-                src="<?= $user->profilePic ? 'uploads/' . htmlspecialchars($user->profilePic) : 'default.png' ?>"
+                src="<?= $user->profilePic ? 'uploads/' . ($user->profilePic) : 'default.png' ?>"
                 alt="Profile Photo"
                 class="w-32 h-32 rounded-full border-4 border-amber-500 hover:opacity-80 transition-opacity">
               <span class="absolute bottom-0 right-0 bg-amber-500 text-white p-2 rounded-full text-xs opacity-0 group-hover:opacity-100 transition-opacity">
@@ -49,7 +49,7 @@
               <input
                 type="text"
                 name="name"
-                value="<?= htmlspecialchars($user->name) ?>"
+                value="<?= ($user->name) ?>"
                 class="w-full bg-gray-700 text-white px-4 py-2 rounded-md border border-amber-500 focus:border-amber-400 focus:ring-2 focus:ring-amber-400">
               <?php if (isset($_SESSION['errors']['name'])): ?>
                 <p class="text-red-400 text-sm"><?= $_SESSION['errors']['name'] ?></p>
@@ -65,7 +65,7 @@
                   <div class="absolute inset-0 bg-<?= strtolower(\Config\Config::HOUSES[$user->house_id]) ?>-500/20 rounded-full blur-lg"></div>
                   <img
                     src="../assets/photos/<?= strtolower(\Config\Config::HOUSES_PHOTOS[$user->house_id]) ?>"
-                    alt="<?= htmlspecialchars(\Config\Config::HOUSES[$user->house_id]) ?> Crest"
+                    alt="<?= (\Config\Config::HOUSES[$user->house_id]) ?> Crest"
                     class="w-24 h-24 rounded-full border-4 border-<?= strtolower(\Config\Config::HOUSES[$user->house_id]) ?>-500">
                 </div>
 
@@ -78,7 +78,7 @@
                     <p class="text-<?= strtolower(\Config\Config::HOUSES[$user->house_id]) ?>-400 font-semibold tracking-wider">HOUSE</p>
                   </div>
                   <h3 class="text-2xl font-bold text-white">
-                    <?= htmlspecialchars(\Config\Config::HOUSES[$user->house_id]) ?>
+                    <?= (\Config\Config::HOUSES[$user->house_id]) ?>
                   </h3>
                   <p class="text-gray-400 text-sm mt-2 italic">
                     <?= \Config\Config::HOUSE_MOTTOES[$user->house_id] ?? 'Courage, Wisdom, Loyalty, Ambition' ?>
@@ -90,7 +90,7 @@
             <!-- Email Display -->
             <div class="mt-4">
               <p class="text-amber-400">✉️ Email:</p>
-              <p class="text-white ml-2"><?= htmlspecialchars($user->email) ?></p>
+              <p class="text-white ml-2"><?= ($user->email) ?></p>
             </div>
 
             <button type="submit" class="mt-6 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors">

@@ -56,17 +56,28 @@ class Student
     return $stmt->fetchAll();
   }
 
-  public function update($id, $name, $email, $password, $houseId, $wandId, $balance)
+  public function update($id, $name, $email, $password, $houseId, $balance)
   {
-    $sql = "UPDATE students SET name = :name, email = :email, password = :password, house_id = :house_id, wand_id = :wand_id, balance = :balance WHERE id = :id";
+    $sql = "UPDATE students SET name = :name, email = :email, password = :password, house_id = :house_id, balance = :balance WHERE id = :id";
     $stmt = $this->db->prepare($sql);
     $stmt->execute([
       'id' => $id,
       'name' => $name,
       'email' => $email,
-      'password' => password_hash($password, PASSWORD_DEFAULT),
+      'password' => password_hash($password, PASSWORD_BCRYPT),
       'house_id' => $houseId,
-      'wand_id' => $wandId,
+      'balance' => $balance
+    ]);
+  }
+  public function updateWithoutPassword($id, $name, $email, $houseId, $balance)
+  {
+    $sql = "UPDATE students SET name = :name, email = :email, house_id = :house_id, balance = :balance WHERE id = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute([
+      'id' => $id,
+      'name' => $name,
+      'email' => $email,
+      'house_id' => $houseId,
       'balance' => $balance
     ]);
   }

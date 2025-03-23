@@ -105,7 +105,7 @@ $professors = $professorModel->getAll();
                 <tbody class="divide-y divide-gray-100">
                     <?php foreach ($professors as $professor): ?>
                         <tr class="hover:bg-gray-50/50 transition-colors group">
-                            <td class="p-5 font-mono text-gray-500">#<?= htmlspecialchars($professor['id']) ?></td>
+                            <td class="p-5 font-mono text-gray-500">#<?= ($professor['id']) ?></td>
                             <td class="p-5">
                                 <div class="flex items-center gap-4">
                                     <div class="w-10 h-10 rounded-full bg-gryffindorRed/10 flex items-center justify-center">
@@ -114,8 +114,8 @@ $professors = $professorModel->getAll();
                                         </svg>
                                     </div>
                                     <div>
-                                        <div class="font-semibold text-gray-900"><?= htmlspecialchars($professor['name']) ?></div>
-                                        <div class="text-sm text-gray-500"><?= htmlspecialchars($professor['email']) ?></div>
+                                        <div class="font-semibold text-gray-900"><?= ($professor['name']) ?></div>
+                                        <div class="text-sm text-gray-500"><?= ($professor['email']) ?></div>
                                     </div>
                                 </div>
                             </td>
@@ -127,7 +127,7 @@ $professors = $professorModel->getAll();
                                 <div class="flex flex-wrap gap-2">
                                     <?php foreach ($courses as $course): ?>
                                         <span class="px-2 py-1 text-sm rounded-full bg-blue-100 text-blue-800">
-                                            <?= htmlspecialchars($course['name']) ?>
+                                            <?= ($course['name']) ?>
                                         </span>
                                     <?php endforeach; ?>
                                 </div>

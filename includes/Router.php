@@ -58,6 +58,7 @@ class Router
       if($jwt)
         $data = AuthMiddleware::validateToken($jwt);
       foreach ($this->routes as $route) {
+        
         if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
           if(in_array($uri, Config::ROUTES['public'])) {
             return require base_path('controllers/'. $route['controller']);
@@ -65,7 +66,9 @@ class Router
           if($data && $data->role) {
             switch ($data->role) {
               case 'student':
-                if(in_array($uri, Config::ROUTES['student'])) {
+                $studentModel = new \Models\Student();
+                $student = $studentModel->getByEmail($data->email);
+                if(in_array($uri, Config::ROUTES['student']) && $student['status'] == 'active') {
                   return require base_path('controllers/'. $route['controller']);
                 }
                 if(in_array($uri, Config::ROUTES['auth'])) {
