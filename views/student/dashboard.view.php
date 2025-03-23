@@ -47,25 +47,7 @@
       </div>
     </div>
 
-    <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <?php foreach ($courses as $course): ?>
-                <div class="bg-gray-800 rounded-xl p-6 shadow-lg border <?= $user->courses->contains($course->id) ? 'border-green-500' : 'border-red-500' ?>">
-                    <div class="flex justify-between items-start mb-4">
-                        <h4 class="text-xl font-semibold text-amber-300"><?= $course->name ?></h4>
-                        <span class="px-3 py-1 text-sm rounded-full <?= $user->courses->contains($course->id) ? 'bg-green-800/30 text-green-400' : 'bg-red-800/30 text-red-400' ?>">
-                            <?= $user->courses->contains($course->id) ? 'Enrolled' : 'Not Enrolled' ?>
-                        </span>
-                    </div>
-                    <p class="text-gray-400 mb-4"><?= $course->description ?? 'No description available' ?></p>
-                    <div class="flex items-center text-gray-500">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                        </svg>
-                        <span><?= $course->professor ?></span>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div> -->
+
 
     <!-- Shop Card -->
     <div class="bg-gradient-to-br from-red-700/30 to-amber-600/30 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 cursor-pointer" onclick="window.location.href='/shop'">
@@ -208,29 +190,46 @@
         </h2>
         <div class="flex flex-wrap justify-center gap-8 m-4">
             <!-- Course Card 1 -->
+            <?php if (!empty($courses)): ?>
+            <?php foreach ($courses as $course): ?>
             <div class="group p-[2px] bg-gradient-to-r from-amber-600/40 to-red-700/40 rounded-lg shadow-lg shadow-red-800/50 hover:shadow-red-700/60 transition-all duration-300">
                 <div class="w-full h-48 sm:w-64 md:w-64 lg:w-80 bg-gray-900 rounded-lg overflow-hidden">
                     <div class="p-4">
                         <h2 class="text-xl font-bold bg-gradient-to-r from-amber-500 to-red-600 bg-clip-text text-transparent">
-                            Potion Making
+                            <?= htmlspecialchars($course['course_name']) ?>
                         </h2>
-                        <p class="mt-2 font-medium text-amber-400">Gryffindor</p>
-                        <p class="mt-2 font-medium text-amber-400">prof. lkjl</p>
+                        <p class="mt-2 font-medium text-amber-400"><?= htmlspecialchars($course['professor_name']) ?></p>
+                        <p class="mt-2 font-medium text-amber-400"><?= htmlspecialchars($course['descr']) ?></p>
                         <div class="mt-6">
-                            <a href="#" class="inline-flex items-center text-sm bg-gradient-to-r from-amber-600 to-red-700 bg-clip-text text-transparent font-semibold hover:text-amber-500 transition-colors duration-200">
-                                Enroll
-                                <svg class="w-4 h-4 ml-2 text-red-600 group-hover:text-amber-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                </svg>
-                            </a>
+                            
+                        <?php if ($course['stat'] === null): ?>
+
+                            <form method="POST" action="/enroll">
+                                    <input type="hidden" name="course_id" 
+                                        value="<?= $course['course_id'] ?>">
+                                    <input type="hidden" name="enroll" value="1">
+                                    <button type="submit" class="enroll-btn">
+                                        Enroll Now
+                                    </button>
+                                </form>
+                            <?php else: ?>
+                                <div>
+                                    Enrolled
+                                </div>
+                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
             
             <!-- EOC -->
             
         </div>
+
+
         <h2 class="text-4xl font-bold text-white" id="quizzes">
             Available Quizzes
         </h2>
