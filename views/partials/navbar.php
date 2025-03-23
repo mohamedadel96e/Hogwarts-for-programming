@@ -1,5 +1,5 @@
 <body>
-<nav class="bg-[#740001] shadow-lg">
+<nav class="sticky top-0 w-full bg-[#740001] shadow-lg  z-10">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between">
                 <div class="flex space-x-7">
