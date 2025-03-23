@@ -2,7 +2,8 @@
 <?php include base_path('views/partials/navbar.php') ?>
 <div class="flex min-h-screen bg-gray-900">
     <!-- Sticky Sidebar (Keep existing structure) -->
-    <div class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px]  from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
+    <div
+        class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px]  from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
         <div class="relative h-full bg-gray-900 flex flex-col space-y-6 p-6 overflow-y-auto">
             <!-- House Crest Section -->
             <div class="mb-8 pt-4">
@@ -29,7 +30,7 @@
                             </div>
                         </a>
                     </li>
-                    
+
 
                     <li>
                         <a href="#courses" class="group flex items-center px-4 py-3 text-sm font-medium transition-all duration-300
@@ -71,17 +72,21 @@
         <!-- Profile Section -->
         <div class="bg-gray-900 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <button onclick="toggleProfile()" class="mb-8 bg-gradient-to-r from-red-700 to-amber-600 hover:from-red-600 hover:to-amber-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
+                <button onclick="toggleProfile()"
+                    class="mb-8 bg-gradient-to-r from-red-700 to-amber-600 hover:from-red-600 hover:to-amber-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
                     Show My Profile ✨
                 </button>
 
                 <!-- Profile Preview -->
-                <div id="profilePreview" class="hidden bg-gray-800 rounded-xl p-6 mb-8 shadow-xl border border-amber-600/30 transition-all duration-300">
+                <div id="profilePreview"
+                    class="hidden bg-gray-800 rounded-xl p-6 mb-8 shadow-xl border border-amber-600/30 transition-all duration-300">
                     <div class="flex items-center space-x-6">
                         <?php if ($user->profilePic): ?>
-                            <img src="<?= '/uploads/' . ($user->profilePic) ?>" alt="Profile" class="w-24 h-24 rounded-full border-4 border-amber-500 object-cover">
+                            <img src="<?= '/uploads/' . ($user->profilePic) ?>" alt="Profile"
+                                class="w-24 h-24 rounded-full border-4 border-amber-500 object-cover">
                         <?php else: ?>
-                            <img src="<?= '/uploads/default.png' ?>" alt="Profile" class="w-24 h-24 rounded-full border-4 border-amber-500">
+                            <img src="<?= '/uploads/default.png' ?>" alt="Profile"
+                                class="w-24 h-24 rounded-full border-4 border-amber-500">
                         <?php endif; ?>
                         <div class="space-y-2 flex-1">
                             <h2 class="text-3xl font-bold text-amber-400"><?= ($user->name) ?></h2>
@@ -89,7 +94,8 @@
                             <div class="flex flex-wrap gap-4 text-gray-400">
                                 <span class="flex items-center">
                                     <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                        <path
+                                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                     </svg>
                                     <?= ($user->email) ?>
@@ -100,13 +106,16 @@
                             </div>
                         </div>
                         <div class="flex flex-col gap-4">
-                            <button onclick="window.location.href='/profile'" class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
+                            <button onclick="window.location.href='/profile'"
+                                class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
                                 Update Profile
                             </button>
-                            <form action="/profile" method="POST" onsubmit="return confirm('Are you sure you want to delete your profile?');">
+                            <form action="/profile" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete your profile?');">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="id" value="<?= $user->id ?>">
-                                <button type="submit" class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
+                                <button type="submit"
+                                    class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105">
                                     Delete Profile
                                 </button>
                             </form>
@@ -115,14 +124,20 @@
                 </div>
 
                 <!-- Shop Card -->
-                <div class="bg-gradient-to-br from-red-700/30 to-amber-600/30 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 cursor-pointer group" onclick="window.location.href='/shop'">
+                <div class="bg-gradient-to-br from-red-700/30 to-amber-600/30 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 cursor-pointer group"
+                    onclick="window.location.href='/shop'">
                     <div class="flex items-center justify-between">
                         <div>
-                            <h3 class="text-2xl font-bold text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">Magical Supplies Shop</h3>
-                            <p class="text-gray-300 group-hover:text-gray-200 transition-colors">Purchase books, wands, and magical equipment</p>
+                            <h3
+                                class="text-2xl font-bold text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">
+                                Magical Supplies Shop</h3>
+                            <p class="text-gray-300 group-hover:text-gray-200 transition-colors">Purchase books, wands,
+                                and magical equipment</p>
                         </div>
-                        <svg class="w-12 h-12 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        <svg class="w-12 h-12 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                     </div>
                 </div>
@@ -133,13 +148,15 @@
         <div class="text-white space-y-12">
             <!-- Courses Section -->
             <section id="courses">
-                <h2 class="text-4xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                <h2
+                    class="text-4xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                     Enrolled Courses
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <?php if (!empty($courses)): ?>
                         <?php foreach ($courses as $course): ?>
-                            <div class="group relative bg-gray-800 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 h-full flex flex-col">
+                            <div
+                                class="group relative bg-gray-800 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 h-full flex flex-col">
                                 <div class="flex flex-col gap-4 h-full">
                                     <!-- Content Section -->
                                     <div class="flex-1">
@@ -148,7 +165,8 @@
                                             <p class="text-gray-300"><?= ($course['descr']) ?></p>
                                             <div class="flex items-center gap-2 text-amber-400">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                 </svg>
                                                 <span><?= ($course['professor_name']) ?></span>
                                             </div>
@@ -160,7 +178,8 @@
                                         <form method="POST" action="/enroll">
                                             <input type="hidden" name="course_id" value="<?= $course['course_id'] ?>">
                                             <input type="hidden" name="student_id" value="<?= $user->id ?>">
-                                            <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
+                                            <button type="submit"
+                                                class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
                                                 Enroll Now
                                             </button>
                                         </form>
@@ -182,18 +201,20 @@
 
             <!-- Quizzes Section -->
             <section id="quizzes">
-                <h2 class="text-4xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                <h2
+                    class="text-4xl font-bold mb-8 bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                     Quiz Challenges
                 </h2>
 
                 <!-- Active Quizzes -->
                 <div class="mb-12">
                     <h3 class="text-2xl font-bold text-amber-400 mb-6">Available Quizzes</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <?php if (!empty($quizzesUnSolved)): ?>
                             <?php foreach ($quizzesUnSolved as $quiz): ?>
                                 <form action="/quizzes/attempt" method="post">
-                                    <div class="bg-gray-800 rounded-xl p-6 border border-amber-600/30 hover:border-amber-500 transition-all duration-300">
+                                    <div
+                                        class="bg-gray-800 rounded-xl p-6 border border-amber-600/30 hover:border-amber-500 transition-all duration-300">
                                         <div class="flex justify-between items-start mb-4">
                                             <h4 class="text-xl font-semibold text-amber-300"><?= ($quiz['question']) ?></h4>
                                             <span class="px-3 py-1 text-sm rounded-full bg-red-800/30 text-red-400">
@@ -215,7 +236,8 @@
                                         <input type="hidden" name="quiz_id" value="<?= $quiz['id'] ?>">
                                         <input type="hidden" name="student_id" value="<?= $user->id ?>">
                                         <input type="hidden" name="house_id" value="<?= $user->house_id ?>">
-                                        <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
+                                        <button type="submit"
+                                            class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
                                             Submit Solution
                                         </button>
                                     </div>
@@ -236,22 +258,26 @@
                         <thead class="bg-gradient-to-r from-amber-800/20 via-red-900/40 to-amber-800/20">
                             <tr>
                                 <th class="px-8 py-4 text-left text-sm font-semibold">
-                                    <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                                    <span
+                                        class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                                         Quiz
                                     </span>
                                 </th>
                                 <th class="px-8 py-4 text-center text-sm font-semibold">
-                                    <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                                    <span
+                                        class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                                         Correct Answer
                                     </span>
                                 </th>
                                 <th class="px-8 py-4 text-center text-sm font-semibold">
-                                    <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                                    <span
+                                        class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                                         Your Answer
                                     </span>
                                 </th>
                                 <th class="px-8 py-4 text-center text-sm font-semibold">
-                                    <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                                    <span
+                                        class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                                         Score
                                     </span>
                                 </th>
@@ -268,17 +294,20 @@
                                             </div>
                                         </td>
                                         <td class="px-8 py-4 text-center">
-                                            <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
-                                                <?= $attempt['answer'] == 1 ? 'True' : 'False' ?> 
+                                            <span
+                                                class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+                                                <?= $attempt['answer'] == 1 ? 'True' : 'False' ?>
                                             </span>
                                         </td>
                                         <td class="px-8 py-4 text-center">
-                                            <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
-                                                <?= $attempt['your_answer'] == 1 ? 'True' : 'False' ?> 
+                                            <span
+                                                class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+                                                <?= $attempt['your_answer'] == 1 ? 'True' : 'False' ?>
                                             </span>
                                         </td>
                                         <td class="px-8 py-4 text-center">
-                                            <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+                                            <span
+                                                class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
                                                 <?= $attempt['score'] ?> pts
                                             </span>
                                         </td>
