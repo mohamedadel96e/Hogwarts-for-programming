@@ -10,12 +10,12 @@ class Shop
         $this->db = Database::getInstance();
     }
 
-    public function getInventory($id)
+    public function getInventory($id): bool|array
     {
-        $sql = "SELECT s.name AS name,
+        $sql = "SELECT s.id AS id, s.name AS name,
                         s.image_path AS imagePath,
                         s.category AS category,
-                        i.purchased_at AS time
+                        i.purchased_at AS purchased_at
                 FROM student_inventory i 
                 INNER JOIN shop_items s
                 ON i.item_id = s.id
@@ -23,12 +23,12 @@ class Shop
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
 
     public function getShopItems($id)
     {
-        $sql = "SELECT s.name AS name,
+        $sql = "SELECT s.id AS id, s.name AS name,
                         s.image_path AS imagePath,
                         s.category AS category,
                         s.price AS price
@@ -37,7 +37,15 @@ class Shop
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch();
+        return $stmt->fetchAll();
+    }
+
+    public function purchaseItem($id, $itemId):bool
+    {
+        $sql = "INSERT INTO student_inventory (student_id, item_id) VALUES (:id, :itemId)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $id, 'itemId' => $itemId]);
+        return true;
     }
 
 }

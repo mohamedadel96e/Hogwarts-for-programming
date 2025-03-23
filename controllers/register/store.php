@@ -29,7 +29,7 @@ $name = trim(htmlspecialchars($_POST['name']));
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = $_POST['password'];
 
-$wand = $wands[rand(2, count($wands))];
+$wand = $wands[rand(2, count( $wands))];
 // Generate random house ID
 $houseId = array_rand($houses);
 $houseName = $houses[$houseId];

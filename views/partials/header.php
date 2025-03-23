@@ -1,7 +1,7 @@
 <?php
 
 use Middleware\AuthMiddleware;
-
+use Models\Student;
 $jwt = $_COOKIE['jwt'] ?? null;
 try {
   $data = null;
@@ -11,6 +11,9 @@ try {
   $authenticated = $data && isset($data->role);
   $role = $data->role ?? null;
   $user = $data;
+  $studentModel = new Student();
+  //dd($user);
+  $userDB = $studentModel->get($user->id);
 } catch (Exception $e) {
   $data = null;
 }

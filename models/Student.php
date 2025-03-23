@@ -176,6 +176,15 @@ class Student
     $stmt = $this->db->prepare($sql);
     $stmt->execute(['points' => $points, 'student_id' => $studentId]);
   }
+
+  public function updateBalance($studentId, $balance): void
+  {
+    $sql = "UPDATE students SET balance = :balance WHERE id = :student_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['balance' => $balance, 'student_id' => $studentId]);
+  }
+  
+
   public function getAllLeaderboard()
   {
     $sql = "SELECT s.name as name, s.house_id as house_id, COALESCE(SUM(sqa.earned_points), 0) AS points FROM students s LEFT JOIN student_quiz_attempts sqa ON s.id = sqa.student_id GROUP BY s.id, s.name, s.house_id ORDER BY points desc;";
