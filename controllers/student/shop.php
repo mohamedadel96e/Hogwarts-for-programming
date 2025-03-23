@@ -5,17 +5,21 @@
   use Models\Shop;
 
   $user = \Middleware\AuthMiddleware::validateToken($_COOKIE['jwt']);
-  
+
+  //dd($user);
   //dd($user);
   $shopModel = new Shop();
   
-  $inventory = $shopModel->getInventory($user->id);
-  //dd($course['stat']);
+  $inventoryItems = $shopModel->getInventory($user->id);
+  $shopItems = $shopModel->getShopItems($user->id);
+
   view('student/shop.view.php', 
   [
     'heading' => 'Magical Shop',
     'title' => 'Shop',
     'user' => $user,
-    'inventory' => $inventory
+
+    'inventoryItems' => $inventoryItems,
+    'shopItems' => $shopItems
   ]
   );

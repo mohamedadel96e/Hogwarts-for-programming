@@ -18,7 +18,7 @@ $router->get('/about', 'about.php');
 $router->get('/history', 'history.php');
 $router->get('/dashboard', 'student/dashboard.php');
 $router->get('/courses', 'courses.php');
-$router->get('/shop', 'shop.php');
+$router->get('/shop', 'student/shop.php');
 
 $router->post('/enroll', 'student/enroll.php');
 
