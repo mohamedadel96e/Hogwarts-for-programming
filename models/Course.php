@@ -40,4 +40,12 @@ class Course
         $stmt->execute(['id' => $id]);
         return $stmt->fetch();
     }
+
+    public function getByProfessor($professor_id)
+    {
+        $sql = "SELECT * FROM courses WHERE professor_id = :professor_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['professor_id' => $professor_id]);
+        return $stmt->fetchAll();
+    }
 }

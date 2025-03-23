@@ -19,7 +19,7 @@ class Professor {
     if ($stmt->execute([
       'name' => $name,
       'email' => $email,
-      'password' => password_hash($password, PASSWORD_BCRYPT)
+      'password' => $password
     ])) {
       return ['message' => 'Professor registered successfully'];
     } else {

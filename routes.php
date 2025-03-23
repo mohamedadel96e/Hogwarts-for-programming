@@ -26,6 +26,8 @@ $router->get('/prof/dashboard', 'prof/dashboard.php');
 $router->post('/add-student', 'students/addStudent.php');
 $router->get('/prof/dashboard/students', 'prof/dashboard/StudentsDash.php');
 $router->patch('/prof/dashboard/students', 'student/update.php');
+$router->get('/prof/dashboard/professors', 'prof/dashboard/ProfessorsDash.php');
+$router->post('/add-professor', 'professor/addProfessor.php');
 $router->get('/prof/dashboard/courses', 'prof/dashboard/CoursesDash.php');
 $router->post('/add-course', 'courses/addCourse.php');
 $router->get('/prof/dashboard/quizzes', 'prof/dashboard/QuizzesDash.php');
