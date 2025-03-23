@@ -48,4 +48,20 @@ class Course
         $stmt->execute(['professor_id' => $professor_id]);
         return $stmt->fetchAll();
     }
+
+    public function getCoursesWithProfs($user_id){
+        $sql = "SELECT 
+                courses.id AS course_id,
+                courses.name AS course_name,
+                courses.description AS descr,
+                p.name AS professor_name,
+                e.status AS stat
+                FROM courses 
+                INNER JOIN professors p 
+                ON courses.professor_id = p.id
+                LEFT JOIN enrollments e ON e.course_id = courses.id AND e.student_id = :user_id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['user_id' => $user_id]);
+        return $stmt->fetchAll();
+    }
 }

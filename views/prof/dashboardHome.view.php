@@ -133,8 +133,8 @@ $houses = (new \Models\House())->getAll();
             <tbody class="bg-white divide-y divide-gray-200">
               <?php foreach ($students as $student):?>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-6 py-4 font-medium text-gray-900"><?= htmlspecialchars($student['name']) ?></td>
-                  <td class="px-6 py-4"><?= htmlspecialchars($student['email']) ?></td>
+                  <td class="px-6 py-4 font-medium text-gray-900"><?= ($student['name']) ?></td>
+                  <td class="px-6 py-4"><?= ($student['email']) ?></td>
                   <td class="px-6 py-4"><?= Config::HOUSES[$student['house_id']] ?></td>
                   <td class="px-6 py-4"><?= $student['balance'] ?></td>
                 </tr>
@@ -161,8 +161,8 @@ $houses = (new \Models\House())->getAll();
                 $professor = $profModel->get($course['professor_id']);
               ?>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-6 py-4 font-medium text-gray-900"><?= htmlspecialchars($course['name']) ?></td>
-                  <td class="px-6 py-4"><?= htmlspecialchars($professor['name']) ?></td>
+                  <td class="px-6 py-4 font-medium text-gray-900"><?= ($course['name']) ?></td>
+                  <td class="px-6 py-4"><?= ($professor['name']) ?></td>
                   <td class="px-6 py-4"><?= count($quizModel->getByCourse($course['id'])) ?></td>
                   <td class="px-6 py-4"><?= count($studentModel->getByCourse($course['id'])) ?></td>
                 </tr>
@@ -189,19 +189,11 @@ $houses = (new \Models\House())->getAll();
                 $course = $courseModel->get($quiz['course_id']);
               ?>
                 <tr class="hover:bg-gray-50 transition-colors">
-                  <td class="px-6 py-4 font-medium text-gray-900"><?= htmlspecialchars($quiz['question']) ?></td>
-                  <td class="px-6 py-4"><?= htmlspecialchars($course['name']) ?></td>
+                  <td class="px-6 py-4 font-medium text-gray-900"><?= ($quiz['question']) ?></td>
+                  <td class="px-6 py-4"><?= ($course['name']) ?></td>
                   <td class="px-6 py-4"><?= $quiz['points'] ?></td>
                   <td class="px-6 py-4">
-                    <div class="relative group">
-                      <button class="text-gryffindorRed hover:text-gryffindorRedDark"
-                        onclick="this.nextElementSibling.classList.toggle('hidden')">
-                        Reveal
-                      </button>
-                      <span class="hidden absolute bg-white p-2 shadow-lg rounded-md border border-gray-100">
-                        <?= htmlspecialchars($quiz['answer']) ?>
-                      </span>
-                    </div>
+                    <?= $quiz['answer'] ?>
                   </td>
                 </tr>
               <?php endforeach; ?>
@@ -226,7 +218,7 @@ $houses = (new \Models\House())->getAll();
                 <tr class="hover:bg-gray-50 transition-colors">
                   <td class="px-6 py-4 font-medium text-gray-900">
                     <span class="text-<?= strtolower($house['name']) ?>-600">
-                      <?= htmlspecialchars($house['name']) ?>
+                      <?= ($house['name']) ?>
                     </span>
                   </td>
                   <td class="px-6 py-4"><?= number_format($house['points']) ?></td>

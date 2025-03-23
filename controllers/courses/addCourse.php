@@ -5,8 +5,8 @@ use Middleware\AuthMiddleware;
 $jwt = $_COOKIE['jwt'];
 $course = new Course();
 
-$name = trim(htmlspecialchars($_POST['name']));
-$description = trim(htmlspecialchars($_POST['description']));
+$name = trim(($_POST['name']));
+$description = trim(($_POST['description']));
 
 $data = AuthMiddleware::validateToken($jwt);
 

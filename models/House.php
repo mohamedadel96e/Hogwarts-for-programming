@@ -15,5 +15,5 @@ class House
         $sql = "SELECT * FROM houses ORDER BY points desc";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
-    }
+    }   
 }
