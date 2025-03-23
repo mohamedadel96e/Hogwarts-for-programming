@@ -27,11 +27,32 @@
       return $this->login($email, $password);
     }
 
+
+    public function registerOnly($name, $email, $password, $houseId, $wandId, $balance = 1000) {
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+      $result = $this->student->create($name, $email, $hashedPassword, $houseId, $wandId, $balance);
+      if (isset($result['error'])) {
+        return $result;
+      }
+      return $result;
+    }
+
+    public function registerProfessor($name, $email, $password) {
+      $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+      // $result = "Hello";
+      $result = $this->professor->create($name, $email, $hashedPassword);
+      if (isset($result['error'])) {
+        return $result;
+      }
+      return $result;
+    }
+
       public function login($email, $password) {
       if(!$email || !$password) {
         return ['error' => 'Email and password are required'];
       }
       $role = $this->professor->getByEmail($email) ? 'professor' : 'student';
+      // dd($role);
       if ($role === 'professor') {
         return $this->professorLogin($email, $password);
       }
@@ -69,7 +90,9 @@
 
     private function professorLogin($email, $password) {
       $professor = $this->professor->getByEmail($email);
-      if (!$professor || $password !== $professor['password']) {
+      // dd($professor);
+      // dd(password_verify($password, $professor['password']));
+      if (!$professor || !password_verify($password, $professor['password'])) {
         view('auth/login.view.php', [
           'error' => 'Invalid email or password'
         ]);

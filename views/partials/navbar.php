@@ -20,8 +20,8 @@
                         <a href="/about" class="py-2 px-4 text-amber-100 <?php if($heading == 'About')  echo 'text-amber-400 bg-red-900'; ?> hover:text-amber-400 hover:bg-red-900 rounded transition duration-300">About</a>
                         <!-- <a href="#" class="py-2 px-4 text-amber-100 hover:text-amber-400 hover:bg-red-900 rounded transition duration-300">Professors</a> -->
                         <a href="/history" class="py-2 px-4 text-amber-100 <?php if($heading == 'History')  echo 'text-amber-400 bg-red-900'; ?> hover:text-amber-400 hover:bg-red-900 rounded transition duration-300">History</a>
-                        <?php if($role == 'student'): ?>
-                        <a href="/dashboard" class="py-2 px-4 text-amber-100 <?php if($heading == 'Student Dashboard')  echo 'text-amber-400 bg-red-900'; ?> hover:text-amber-400 hover:bg-red-900 rounded transition duration-300">Dashboard</a>
+                        <?php if($role == 'student' || $role == 'professor' || $role == 'admin'): ?>
+                        <a href=<?= ($role == 'student' ? '/dashboard' : '/prof/dashboard' ) ?> class="py-2 px-4 text-amber-100 <?php if($heading == 'Student Dashboard')  echo 'text-amber-400 bg-red-900'; ?> hover:text-amber-400 hover:bg-red-900 rounded transition duration-300">Dashboard</a>
                         <?php endif; ?>
                     </div>
                 </div>
