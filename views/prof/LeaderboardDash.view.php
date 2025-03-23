@@ -2,7 +2,7 @@
 include base_path('views/partials/header.php');
 include base_path('views\partials\dashSideHead.php');
 require_once 'Config/Config.php';
-require_once 'models/Houses.php';
+require_once 'models/House.php';
 use Models\House;
 
 $HousesModel = new House();
