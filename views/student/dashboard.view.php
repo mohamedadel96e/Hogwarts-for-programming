@@ -173,7 +173,7 @@
                     <?php if ($course['stat'] === null): ?>
                         <form method="POST" action="/enroll">
                             <input type="hidden" name="course_id" value="<?= $course['course_id'] ?>">
-                            <input type="hidden" name="enroll" value="1">
+                            <input type="hidden" name="student_id" value="<?= $user->id ?>">
                             <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
                                 Enroll Now
                             </button>

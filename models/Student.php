@@ -162,4 +162,11 @@ class Student
     $stmt->execute(['house_id' => $houseId]);
     return $stmt->fetchAll();
   }
+
+  public function enrollInCourse($studentId, $courseId)
+  {
+    $sql = "INSERT INTO enrollments (student_id, course_id) VALUES (:student_id, :course_id)";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['student_id' => $studentId, 'course_id' => $courseId]);
+  }
 }

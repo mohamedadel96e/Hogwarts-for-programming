@@ -20,6 +20,8 @@ $router->get('/dashboard', 'student/dashboard.php');
 $router->get('/courses', 'courses.php');
 $router->get('/shop', 'shop.php');
 
+$router->post('/enroll', 'student/enroll.php');
+
 $router->get('/admin', 'notes/index.php');
 $router->get('/admin/professors', 'admin/ProfessorsDash.php');
 
