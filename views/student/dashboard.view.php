@@ -1,6 +1,5 @@
 <?php include base_path('views/partials/header.php') ?>
 <?php include base_path('views/partials/navbar.php') ?>
-
 <div class="flex min-h-screen bg-gray-900">
     <!-- Sticky Sidebar (Keep existing structure) -->
     <div class="sticky top-16 w-64 h-[calc(100vh-4rem)] p-[1.5px]  from-amber-600/30 to-red-700/30 shadow-lg shadow-red-800/40 z-10">
@@ -23,27 +22,14 @@
                             border-l-4 border-transparent hover:border-amber-500">
                             <span class="bg-gradient-to-r from-amber-400 to-red-300 bg-clip-text text-transparent 
                                 group-hover:from-amber-300 group-hover:to-red-200 transition-all">
-                                    🛒 Shop
+                                🛒 Shop
                             </span>
                             <div class="ml-auto text-amber-500/80 group-hover:text-amber-400 transition-colors">
-                                $<?= $user->balance ?>
+                                $<?= $userDB['balance'] ?>
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="#points" class="group flex items-center px-4 py-3 text-sm font-medium transition-all duration-300
-                            bg-gradient-to-r from-amber-500/0 via-red-600/10 to-amber-500/0
-                            hover:from-amber-500/15 hover:via-red-600/20 hover:to-amber-500/15
-                            border-l-4 border-transparent hover:border-amber-500">
-                            <span class="bg-gradient-to-r from-amber-400 to-red-300 bg-clip-text text-transparent 
-                                group-hover:from-amber-300 group-hover:to-red-200 transition-all">
-                                🦁 Points
-                            </span>
-                            <div class="ml-auto text-amber-500/80 group-hover:text-amber-400 transition-colors">
-                                <?= $user->balance ?>
-                            </div>
-                        </a>
-                    </li>
+                    
 
                     <li>
                         <a href="#courses" class="group flex items-center px-4 py-3 text-sm font-medium transition-all duration-300
@@ -109,7 +95,7 @@
                                     <?= ($user->email) ?>
                                 </span>
                                 <span class="flex items-center">
-                                    💵 Balance: ₲<?= number_format($user->balance, 2) ?>
+                                    💵 Balance: ₲<?= number_format($userDB['balance'], 2) ?>
                                 </span>
                             </div>
                         </div>
@@ -129,7 +115,7 @@
                 </div>
 
                 <!-- Shop Card -->
-                <div  class="bg-gradient-to-br from-red-700/30 to-amber-600/30 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 cursor-pointer group" onclick="window.location.href='/shop'">
+                <div class="bg-gradient-to-br from-red-700/30 to-amber-600/30 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 cursor-pointer group" onclick="window.location.href='/shop'">
                     <div class="flex items-center justify-between">
                         <div>
                             <h3 class="text-2xl font-bold text-amber-300 mb-2 group-hover:text-amber-200 transition-colors">Magical Supplies Shop</h3>
@@ -151,47 +137,47 @@
                     Enrolled Courses
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <?php if (!empty($courses)): ?>
-        <?php foreach ($courses as $course): ?>
-            <div class="group relative bg-gray-800 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 h-full flex flex-col">
-                <div class="flex flex-col gap-4 h-full">
-                    <!-- Content Section -->
-                    <div class="flex-1">
-                        <h3 class="text-2xl font-bold text-amber-400"><?= ($course['course_name']) ?></h3>
-                        <div class="space-y-2 mt-4">
-                            <p class="text-gray-300"><?= ($course['descr']) ?></p>
-                            <div class="flex items-center gap-2 text-amber-400">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                </svg>
-                                <span><?= ($course['professor_name']) ?></span>
-                            </div>
-                        </div>
-                    </div>
+                    <?php if (!empty($courses)): ?>
+                        <?php foreach ($courses as $course): ?>
+                            <div class="group relative bg-gray-800 rounded-xl p-6 shadow-xl border border-amber-600/30 hover:border-amber-500 transition-all duration-300 h-full flex flex-col">
+                                <div class="flex flex-col gap-4 h-full">
+                                    <!-- Content Section -->
+                                    <div class="flex-1">
+                                        <h3 class="text-2xl font-bold text-amber-400"><?= ($course['course_name']) ?></h3>
+                                        <div class="space-y-2 mt-4">
+                                            <p class="text-gray-300"><?= ($course['descr']) ?></p>
+                                            <div class="flex items-center gap-2 text-amber-400">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
+                                                <span><?= ($course['professor_name']) ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    <!-- Bottom Section (Always at bottom) -->
-                    <?php if ($course['stat'] === null): ?>
-                        <form method="POST" action="/enroll">
-                            <input type="hidden" name="course_id" value="<?= $course['course_id'] ?>">
-                            <input type="hidden" name="student_id" value="<?= $user->id ?>">
-                            <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
-                                Enroll Now
-                            </button>
-                        </form>
+                                    <!-- Bottom Section (Always at bottom) -->
+                                    <?php if ($course['stat'] === null): ?>
+                                        <form method="POST" action="/enroll">
+                                            <input type="hidden" name="course_id" value="<?= $course['course_id'] ?>">
+                                            <input type="hidden" name="student_id" value="<?= $user->id ?>">
+                                            <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
+                                                Enroll Now
+                                            </button>
+                                        </form>
+                                    <?php else: ?>
+                                        <div class="px-4 py-2 bg-green-800/30 text-green-400 rounded-lg text-center">
+                                            Enrolled
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     <?php else: ?>
-                        <div class="px-4 py-2 bg-green-800/30 text-green-400 rounded-lg text-center">
-                            Enrolled
+                        <div class="col-span-full text-center py-12">
+                            <p class="text-amber-400 text-lg">No courses available for enrollment</p>
                         </div>
                     <?php endif; ?>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <div class="col-span-full text-center py-12">
-            <p class="text-amber-400 text-lg">No courses available for enrollment</p>
-        </div>
-    <?php endif; ?>
-</div>
             </section>
 
             <!-- Quizzes Section -->
@@ -204,23 +190,36 @@
                 <div class="mb-12">
                     <h3 class="text-2xl font-bold text-amber-400 mb-6">Available Quizzes</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <?php if (!empty($quizzes)): ?>
-                            <?php foreach ($quizzes as $quiz): ?>
-                                <div class="bg-gray-800 rounded-xl p-6 border border-amber-600/30 hover:border-amber-500 transition-all duration-300">
-                                    <div class="flex justify-between items-start mb-4">
-                                        <h4 class="text-xl font-semibold text-amber-300"><?= ($quiz['name']) ?></h4>
-                                        <span class="px-3 py-1 text-sm rounded-full bg-red-800/30 text-red-400">
-                                            <?= ($quiz['course_name']) ?>
-                                        </span>
+                        <?php if (!empty($quizzesUnSolved)): ?>
+                            <?php foreach ($quizzesUnSolved as $quiz): ?>
+                                <form action="/quizzes/attempt" method="post">
+                                    <div class="bg-gray-800 rounded-xl p-6 border border-amber-600/30 hover:border-amber-500 transition-all duration-300">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <h4 class="text-xl font-semibold text-amber-300"><?= ($quiz['question']) ?></h4>
+                                            <span class="px-3 py-1 text-sm rounded-full bg-red-800/30 text-red-400">
+                                                <?= $quiz['course_name'] ?>
+                                            </span>
+                                        </div>
+                                        <div class="flex items-center gap-4 mt-1">
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" name="answer" value="true" required
+                                                    class="form-radio text-gryffindorRed focus:ring-gryffindorRed">
+                                                <span class="ml-2">True</span>
+                                            </label>
+                                            <label class="inline-flex items-center">
+                                                <input type="radio" name="answer" value="false" required
+                                                    class="form-radio text-gryffindorRed focus:ring-gryffindorRed">
+                                                <span class="ml-2">False</span>
+                                            </label>
+                                        </div>
+                                        <input type="hidden" name="quiz_id" value="<?= $quiz['id'] ?>">
+                                        <input type="hidden" name="student_id" value="<?= $user->id ?>">
+                                        <input type="hidden" name="house_id" value="<?= $user->house_id ?>">
+                                        <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
+                                            Submit Solution
+                                        </button>
                                     </div>
-                                    <p class="text-gray-300 mb-4"><?= ($quiz['description']) ?></p>
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-amber-400">★ <?= $quiz['points'] ?> Points</span>
-                                        <a href="/quiz/<?= $quiz['id'] ?>" class="bg-gradient-to-r from-amber-600 to-red-700 text-white py-2 px-4 rounded-lg hover:from-amber-500 hover:to-red-600 transition-all duration-200">
-                                            Start Quiz
-                                        </a>
-                                    </div>
-                                </div>
+                                </form>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <div class="col-span-full text-center py-6">
@@ -243,6 +242,16 @@
                                 </th>
                                 <th class="px-8 py-4 text-center text-sm font-semibold">
                                     <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                                        Correct Answer
+                                    </span>
+                                </th>
+                                <th class="px-8 py-4 text-center text-sm font-semibold">
+                                    <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                                        Your Answer
+                                    </span>
+                                </th>
+                                <th class="px-8 py-4 text-center text-sm font-semibold">
+                                    <span class="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                                         Score
                                     </span>
                                 </th>
@@ -255,8 +264,18 @@
                                         <td class="px-8 py-4 text-sm font-medium">
                                             <div class="flex items-center gap-4">
                                                 <span class="text-amber-400">★</span>
-                                                <?= ($attempt['quiz_name']) ?>
+                                                <?= ($attempt['question']) ?>
                                             </div>
+                                        </td>
+                                        <td class="px-8 py-4 text-center">
+                                            <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+                                                <?= $attempt['answer'] == 1 ? 'True' : 'False' ?> 
+                                            </span>
+                                        </td>
+                                        <td class="px-8 py-4 text-center">
+                                            <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+                                                <?= $attempt['your_answer'] == 1 ? 'True' : 'False' ?> 
+                                            </span>
                                         </td>
                                         <td class="px-8 py-4 text-center">
                                             <span class="text-sm bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
@@ -289,4 +308,4 @@
     }
 </script>
 
-<?php include 'partials/footer.php' ?>
+<?php include base_path('views/partials/footer.php') ?>

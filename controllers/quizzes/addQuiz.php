@@ -6,7 +6,7 @@ $jwt = $_COOKIE['jwt'];
 $quiz = new Quiz();
 
 $question = trim(htmlspecialchars($_POST['question']));
-$answer = trim(htmlspecialchars($_POST['answer']));
+$answer = (bool) $_POST['answer'];
 $points = $_POST['points'];
 $course_id = $_POST['course_id'];
 

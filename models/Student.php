@@ -169,4 +169,13 @@ class Student
     $stmt = $this->db->prepare($sql);
     $stmt->execute(['student_id' => $studentId, 'course_id' => $courseId]);
   }
+
+  public function addPoints($studentId, $points)
+  {
+    $sql = "UPDATE students SET balance = balance + :points WHERE id = :student_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['points' => $points, 'student_id' => $studentId]);
+  }
+
+  
 }

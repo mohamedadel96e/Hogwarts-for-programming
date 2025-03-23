@@ -67,24 +67,25 @@ CREATE TABLE enrollments (
 );
 
 -- Quizzes Table
+DROP TABLE IF EXISTS quizzes;
 CREATE TABLE quizzes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     course_id INT NOT NULL,
     professor_id INT NOT NULL,
     question TEXT NOT NULL,
-    answer TEXT NOT NULL,
+    answer BOOLEAN NOT NULL,
     points INT DEFAULT 5, -- Bonus Points for Correct Answer
     FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
     FOREIGN KEY (professor_id) REFERENCES professors(id) ON DELETE CASCADE
 );
 
 -- Student Quiz Attempts Table
+DROP TABLE IF EXISTS student_quiz_attempts;
 CREATE TABLE student_quiz_attempts (
     id INT PRIMARY KEY AUTO_INCREMENT,
     student_id INT NOT NULL,
     quiz_id INT NOT NULL,
-    submitted_answer TEXT NOT NULL,
-    is_graded BOOLEAN DEFAULT FALSE,
+    submitted_answer BOOLEAN NOT NULL,
     earned_points INT DEFAULT 0,
     FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
     FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE

@@ -4,7 +4,7 @@
 $id = $_POST['id'];
 $status = $_POST['status'];
 $student = new Student();
-if(!$_POST['_method'])
+if($_POST['_method'] === 'PATCH')
   $student->updateStatus($id, $status);
 else {
   $password = trim($_POST['password']);

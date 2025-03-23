@@ -45,6 +45,8 @@ $router->get('/quizzes/show', 'quizzes/show.php');
 $router->put('/quizzes', 'quizzes/update.php');
 $router->delete('/quizzes', 'quizzes/delete.php');
 
+$router->post('/quizzes/attempt', 'quizzes/attempt.php');
+
 $router->post('/students/show', 'student/show.php');
 $router->put('/students', 'student/update.php');
 $router->delete('/students', 'student/delete.php');

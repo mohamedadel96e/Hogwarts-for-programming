@@ -49,10 +49,18 @@ $courses = $courseModel->getAll();
                     </svg>
                     Correct Answer
                 </label>
-                <input type="text" name="answer" required
-                    class="mt-1 block w-full rounded-lg border-gray-200 shadow-sm py-2 px-4 
-                           focus:border-gryffindorRed focus:ring-2 focus:ring-gryffindorRed/50 
-                           transition-all duration-200 placeholder-gray-400">
+                <div class="flex items-center gap-4 mt-1">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="answer" value="true" required
+                            class="form-radio text-gryffindorRed focus:ring-gryffindorRed">
+                        <span class="ml-2">True</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="answer" value="false" required
+                            class="form-radio text-gryffindorRed focus:ring-gryffindorRed">
+                        <span class="ml-2">False</span>
+                    </label>
+                </div>
             </div>
 
             <!-- Points Input -->
@@ -142,7 +150,7 @@ $courses = $courseModel->getAll();
                             <td class="p-4 text-gray-700"><?= ($quiz['question']) ?></td>
                             <td class="p-4">
                                 <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                                    <?= ($quiz['answer']) ?>
+                                    <?= ($quiz['answer'] === 1 ? "True" : "False") ?>
                                 </span>
                             </td>
                             <td class="p-4 font-semibold text-gryffindorRed">

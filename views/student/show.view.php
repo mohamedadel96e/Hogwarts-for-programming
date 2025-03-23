@@ -89,7 +89,7 @@
               class="w-full bg-gray-700 rounded-lg p-3 border border-amber-600/30
                                       focus:border-amber-500 focus:ring-2 focus:ring-amber-500/50">
               <?php foreach (\Config\Config::HOUSES as $id => $house): ?>
-                <option value="<?= $id ?>" class="py-2"><?= $house ?></option>
+                <option value="<?= $id ?>"  <?= $student['house_id'] === $id ? 'selected' : '' ?> class="py-2"><?= $house ?></option>
               <?php endforeach; ?>
             </select>
           </div>

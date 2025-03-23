@@ -110,6 +110,7 @@ class Router
         }
       }
     } catch (\Exception $e) {
+      dd($e->getMessage());
       $this->abort(401);
     }
 
