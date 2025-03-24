@@ -14,6 +14,8 @@
   $courses = $courseModel->getCoursesWithProfs($user->id);
   $quizzesUnSolved = $quizModel->getByStudentUnSolved($user->id);
   $quizzes = $quizModel->getAttemptedByStudent($user->id);
+  $rank = $studentModel->getRank($user->id);
+//  dd($rank);
   //dd($course['stat']);
   view('student/dashboard.view.php', 
   [
@@ -23,6 +25,7 @@
     'userDB' => $userDB,
     'courses' => $courses,
     'pastQuizzes' => $quizzes,
-    'quizzesUnSolved' => $quizzesUnSolved
+    'quizzesUnSolved' => $quizzesUnSolved,
+    'rank' => $rank
   ]
   );

@@ -289,4 +289,3 @@ $houses = (new \Models\House())->getAll();
   });
 </script>
 
-<?php include base_path('views/partials/footer.php'); ?>

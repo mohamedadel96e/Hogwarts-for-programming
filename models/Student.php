@@ -187,9 +187,22 @@ class Student
 
   public function getAllLeaderboard()
   {
-    $sql = "SELECT s.name as name, s.house_id as house_id, COALESCE(SUM(sqa.earned_points), 0) AS points FROM students s LEFT JOIN student_quiz_attempts sqa ON s.id = sqa.student_id GROUP BY s.id, s.name, s.house_id ORDER BY points desc;";
+    $sql = "SELECT s.id, s.name as name, s.house_id as house_id, COALESCE(SUM(sqa.earned_points), 0) AS points FROM students s LEFT JOIN student_quiz_attempts sqa ON s.id = sqa.student_id GROUP BY s.id, s.name, s.house_id ORDER BY points desc;";
     $stmt = $this->db->query($sql);
     return $stmt->fetchAll();
+  }
+
+  public function getRank($studentId)
+  {
+    $students = $this->getAllLeaderboard();
+    $rank = 1;
+    foreach ($students as $student) {
+      if ($student['id'] == $studentId) {
+        return $rank;
+      }
+      $rank++;
+    }
+    return $rank;
   }
 
   public function getWand($studentId)

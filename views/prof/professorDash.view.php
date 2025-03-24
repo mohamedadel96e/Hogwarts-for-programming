@@ -141,5 +141,5 @@ $professors = $professorModel->getAll();
         </div>
     </div>
 </main>
-
-<?php include base_path('views/partials/footer.php'); ?>
+</body>
+</html>

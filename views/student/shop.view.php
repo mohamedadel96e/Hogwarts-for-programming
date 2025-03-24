@@ -9,7 +9,7 @@
     <!-- Store Header -->
     <div class="mb-12 text-center">
       <p class="mt-4 text-amber-300">Your current gold:
-        <span class="text-red-400 font-bold">$<?= ($userDB['balance']) ?></span>
+        <span class="text-red-400 font-bold">₲<?= ($userDB['balance']) ?></span>
       </p>
     </div>
 
@@ -60,7 +60,7 @@
                      alt="<?= ($item['name']) ?>"
                      class="w-full h-128 object-cover rounded-lg transform group-hover:scale-105 transition-transform">
                 <div class="absolute top-2 right-2 bg-red-800/80 text-amber-300 px-3 py-1 rounded-full text-sm">
-                  <?= ($item['price']) ?>
+                  ₲<?= ($item['price']) ?>
                 </div>
               </div>
               <h3 class="text-xl font-bold mb-2 bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
