@@ -20,10 +20,10 @@
     "require": {
         "firebase/php-jwt": "^6.11",
         "rakit/validation": "^1.4",
-        "illuminate/routing": "^12.3",
-        "illuminate/support": "^12.3",
-        "illuminate/http": "^12.3",
-        "illuminate/events": "^12.3",
-        "illuminate/container": "^12.3",
+        "illuminate/routing": "^10.3",
+        "illuminate/support": "^10.3",
+        "illuminate/http": "^10.3",
+        "illuminate/events": "^10.3",
+        "illuminate/container": "^10.3"
     }
 }
