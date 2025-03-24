@@ -91,7 +91,7 @@ $students = $studentModel->getAll();
                     </svg>
                     Initial Balance
                 </label>
-                <input type="number" name="balance" step="0.01" value="100.00" required
+                <input type="number" name="balance" step="0.01" value="1000.00" required
                     class="mt-1 block w-full rounded-xl border-gray-200 shadow-sm py-3 px-4 
                            focus:ring-2 focus:ring-gryffindorRed/50 focus:border-gryffindorRed
                            transition-all duration-200 placeholder-gray-400 text-lg">
@@ -209,4 +209,3 @@ $students = $studentModel->getAll();
     </div>
 </main>
 
-<?php include base_path('views/partials/footer.php'); ?>

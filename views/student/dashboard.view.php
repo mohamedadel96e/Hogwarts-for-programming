@@ -28,7 +28,7 @@
                             </span>
 
                 <div class="ml-auto text-amber-500/80 group-hover:text-amber-400 transition-colors">
-                  $<?= $userDB['balance'] ?>
+                  ₲<?= $userDB['balance'] ?>
                 </div>
               </a>
             </li>
@@ -65,7 +65,7 @@
 
         <!-- Footer -->
         <div class="text-center text-sm bg-gradient-to-r from-amber-500 to-red-600 bg-clip-text text-transparent">
-          Current Rank: <span class="text-amber-300">1st</span>
+          Current Rank: <span class="text-amber-300"><?= ordinal($rank) ?>🪄</span>
         </div>
       </div>
     </div>

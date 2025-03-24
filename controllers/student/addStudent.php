@@ -28,6 +28,8 @@ $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $password = $_POST['password'];
 $houseId = $_POST['house_id'];
 $balance = $_POST['balance'];
+$wands = (new \Models\Wand())->getAll();
+$wand = $wands[rand(2, count( $wands))];
 
 
 // Register the student
@@ -37,7 +39,7 @@ $result = $authController->registerOnly(
     $email,
     $password,
     $houseId,
-    1,
+    $wand['id'],
     $balance
 );
 

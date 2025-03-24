@@ -12,7 +12,12 @@ $courseModel = new Course();
 $quizzesModel = new Quiz();
 
 $quizzes = $quizzesModel->getAll();
-$courses = $courseModel->getAll();
+$data = \Middleware\AuthMiddleware::validateToken($_COOKIE['jwt']);
+if($data->role === 'admin') {
+  $courses = $courseModel->getAll();
+}else {
+  $courses = $courseModel->getByProfessor($data->id);
+}
 ?>
 
 

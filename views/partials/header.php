@@ -14,7 +14,7 @@ try {
   $studentModel = new Student();
   //dd($user);
   $userDB = $studentModel->get($user->id);
-  $wand = (object)(new \Models\Wand())->get($user->wand_id);
+  $wand = (object)((new \Models\Wand())->get($user->wand_id));
 } catch (Exception $e) {
   $data = null;
 }
