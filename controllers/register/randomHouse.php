@@ -2,12 +2,17 @@
 
 use Middleware\AuthMiddleware;
 use Config\Config;
+use Models\Student;
 
   $jwt = $_COOKIE['jwt'] ?? null;
   $data = AuthMiddleware::validateToken($jwt);
-  $house = Config::HOUSES[$data->house_id];
+  $user = (object)(new Student())->get($data->id);
+
+  $house = Config::HOUSES[$user->house_id];
+  $wand = (object)(new \Models\Wand())->get($user->wand_id);
 view('auth/randomHouse.view.php',
   [
-    'house' => $house
+    'house' => $house,
+    'wand' => $wand
 ]);
 exit;
