@@ -106,6 +106,9 @@
                   <span class="flex items-center">
                                     💵 Balance: ₲<?= number_format($userDB['balance'], 2) ?>
                                 </span>
+                  <span class="flex items-center">
+                                    🪄 Wand: <?= ($wand->name) ?>
+                                </span>
 
                 </div>
               </div>

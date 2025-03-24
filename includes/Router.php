@@ -2,11 +2,14 @@
 
 namespace Includes;
 require base_path('vendor/autoload.php');
-use \Middleware\AuthMiddleware;
-require base_path('middleware/AuthMiddleware.php');
-use Config\Config;
-require base_path('config/config.php');
 
+use \Middleware\AuthMiddleware;
+
+require base_path('middleware/AuthMiddleware.php');
+
+use Config\Config;
+
+require base_path('config/config.php');
 
 
 class Router
@@ -16,10 +19,10 @@ class Router
   public function add($method, $uri, $controller)
   {
     $this->routes[] = [
-      'uri' => $uri,
-      'controller' => $controller,
-      'method' => $method,
-      'middleware' => null
+        'uri' => $uri,
+        'controller' => $controller,
+        'method' => $method,
+        'middleware' => null
     ];
 
     return $this;
@@ -49,29 +52,30 @@ class Router
   {
     return $this->add('PUT', $uri, $controller);
   }
+
   public function route($uri, $method)
   {
     // dd($uri, $method, $_POST);
     $jwt = $_COOKIE['jwt'] ?? null;
     try {
       $data = null;
-      if($jwt)
+      if ($jwt)
         $data = AuthMiddleware::validateToken($jwt);
       foreach ($this->routes as $route) {
-        
+
         if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-          if(in_array($uri, Config::ROUTES['public'])) {
-            return require base_path('controllers/'. $route['controller']);
+          if (in_array($uri, Config::ROUTES['public'])) {
+            return require base_path('controllers/' . $route['controller']);
           }
-          if($data && $data->role) {
+          if ($data && $data->role) {
             switch ($data->role) {
               case 'student':
                 $studentModel = new \Models\Student();
                 $student = $studentModel->getByEmail($data->email);
-                if(in_array($uri, Config::ROUTES['student']) && $student['status'] == 'active') {
-                  return require base_path('controllers/'. $route['controller']);
+                if (in_array($uri, Config::ROUTES['student']) && $student['status'] == 'active') {
+                  return require base_path('controllers/' . $route['controller']);
                 }
-                if(in_array($uri, Config::ROUTES['auth'])) {
+                if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'student/dashboard.php');
                 }
@@ -81,16 +85,16 @@ class Router
                 if (in_array($uri, Config::ROUTES['prof'])) {
                   return require base_path('controllers/' . $route['controller']);
                 }
-                if(in_array($uri, Config::ROUTES['auth'])) {
+                if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'prof/dashboard.php');
                 }
                 break;
-                case 'admin':
-                if(in_array($uri, Config::ROUTES['admin'])) {
-                  return require base_path('controllers/'. $route['controller']);
+              case 'admin':
+                if (in_array($uri, Config::ROUTES['admin'])) {
+                  return require base_path('controllers/' . $route['controller']);
                 }
-                if(in_array($uri, Config::ROUTES['auth'])) {
+                if (in_array($uri, Config::ROUTES['auth'])) {
                   redirect('dashboard');
                   return require base_path('controllers/' . 'admin/dashboard.php');
                 }
@@ -100,11 +104,11 @@ class Router
                 break;
             }
             $this->abort(403);
-          }else {
+          } else {
             // dd($uri, Config::ROUTES['public']);
-            if(in_array($uri, Config::ROUTES['auth']))
+            if (in_array($uri, Config::ROUTES['auth']))
               return require base_path('controllers/' . $route['controller']);
-            else 
+            else
               $this->abort(403);
           }
         }

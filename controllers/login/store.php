@@ -8,8 +8,8 @@ require_once base_path('controllers/AuthController.php');
 $validator = new Validator();
 
 $validation = $validator->make($_POST, [
-  'email' => 'required|email',
-  'password' => 'required|min:6',
+    'email' => 'required|email',
+    'password' => 'required|min:6',
 ]);
 
 $validation->validate();
@@ -29,19 +29,19 @@ $password = $_POST['password'];
 // Register the student 
 $authController = new AuthController();
 $result = $authController->login(
-  $email,
-  $password
+    $email,
+    $password
 );
 
 if ($result) {
-  if(isset($result['error'])) {
+  if (isset($result['error'])) {
     view('auth/login.view.php', ['error' => $result['error']]);
     exit;
   }
-  
+
   // dd($result);
   // Set the token in a cookie
-  setcookie('jwt', $result['token'], time() + Config::JWT_EXPIRATION); 
+  setcookie('jwt', $result['token'], time() + Config::JWT_EXPIRATION);
 
   // Redirect to the dashboard
   redirect('dashboard');

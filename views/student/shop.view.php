@@ -88,4 +88,3 @@
 
 
 <?php include base_path('views/partials/footer.php') ?>
-?>
