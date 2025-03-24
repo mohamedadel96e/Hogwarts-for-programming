@@ -9,6 +9,7 @@ if (!isset($_COOKIE['jwt'])) {
 }
 $student = new Student();
 $user = AuthMiddleware::validateToken($_COOKIE['jwt']);
+$user = (object)$student->get($user->id);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $name = $_POST['name'];
   $errors = [];
@@ -29,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $errors['avatar'] = 'File size must be less than 2MB';
     }
   }
-
   if (empty($errors)) {
     if ($_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
       $uploadDir = 'uploads/';
@@ -51,13 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $student->updateName($user->id, $name);
     $user->name = $name;
-    setcookie('jwt', AuthMiddleware::generateToken((array)$user), time() + 3600, '/');
+    $user = (array)$user;
+    $user['role'] = 'student';
+    setcookie('jwt', AuthMiddleware::generateToken($user), time() + 3600, '/');
     redirect('/profile');
     $_SESSION['success'] = 'Profile updated successfully';
   }
 }
 
 $user = AuthMiddleware::validateToken($_COOKIE['jwt']);
+$wand = (object)(new \Models\Wand())->get($user->wand_id);
+
 // dd($user);
 view(
   'profile.view.php',
@@ -65,5 +69,6 @@ view(
     'user' => $user,
     'title' => 'Profile',
     'heading' => 'Profile',
+    'wand' => $wand
   ]
 );
