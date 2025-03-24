@@ -38,9 +38,9 @@
       <p class="text-xl text-white mb-2">Wood: <?= $wand->wood ?></p>
       <p class="text-xl text-white mb-2">Core: <?= $wand->core ?></p>
     </div>
-    <img src="../../assets/wands/<?= strtolower($wand->photo) ?>"
+    <img src="../../assets/photos/wands/<?= strtolower($wand->photo) ?>"
          alt="<?= $wand->photo ?> Wand"
-         class="mx-auto h-20">
+         class="mx-auto h-40">
   </div>
   <br>
   <p class="text-2xl text-white mt-4">Starting your journey in...</p>

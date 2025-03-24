@@ -141,34 +141,3 @@ CREATE TABLE student_inventory
 );
 
 
-INSERT INTO houses (name)
-VALUES ('Gryffindor'),
-       ('Slytherin'),
-       ('Ravenclaw'),
-       ('Hufflepuff');
-
-
-INSERT INTO wands (name, magic_power, wood, core)
-VALUES ('Flamecaster', 95, 'Holly', 'Phoenix Feather'),
-       ('Shadowfang', 90, 'Yew', 'Dragon Heartstring'),
-       ('Eldermight', 99, 'Elder', 'Unicorn Hair'),
-       ('Moonwhisper', 85, 'Willow', 'Thestral Tail Hair'),
-       ('Stormbinder', 88, 'Hawthorn', 'Phoenix Feather'),
-       ('Oakvenom', 92, 'Oak', 'Dragon Heartstring'),
-       ('Inferno Branch', 87, 'Maple', 'Phoenix Feather'),
-       ('Silverstrider', 82, 'Ash', 'Unicorn Hair'),
-       ('Venomfang', 96, 'Cherry', 'Basilisk Horn'),
-       ('Charmweaver', 80, 'Birch', 'Veela Hair'),
-       ('Firebrand', 89, 'Walnut', 'Dragon Heartstring'),
-       ('Blazebeak', 84, 'Poplar', 'Phoenix Feather'),
-       ('Stormhowler', 97, 'Rowan', 'Thunderbird Tail Feather'),
-       ('Emerald Whisper', 75, 'Cedar', 'Leprechaun Hair'),
-       ('Wavebinder', 83, 'Hazel', 'Kelpie Hair'),
-       ('Wildflame', 90, 'Sycamore', 'Rougarou Hair'),
-       ('Tempestcaller', 94, 'Blackthorn', 'Thunderbird Tail Feather'),
-       ('Poisonfang', 98, 'Alder', 'Basilisk Horn'),
-       ('Aurora Shroud', 78, 'Pine', 'Veela Hair'),
-       ('Beastbane', 91, 'Spruce', 'Wampus Cat Hair');
-
-INSERT INTO professors (name, email, password, role) VALUES ('Albus Dumbledore', 'dambldore@hogwarts.edu', '$2y$10$acehqg9h2EbE.LcoMpEp7OV6cOxfPXfYGIZzT9pmuznucSMMVbcj6',
-                                                             'Chairman');
