@@ -192,5 +192,12 @@ class Student
     return $stmt->fetchAll();
   }
 
+  public function getWand($studentId)
+  {
+    $sql = "SELECT w.name as name, w.magic_power as magic_power FROM wands w JOIN students s ON w.id = s.wand_id WHERE s.id = :student_id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute(['student_id' => $studentId]);
+    return $stmt->fetch();
+  }
 
 }

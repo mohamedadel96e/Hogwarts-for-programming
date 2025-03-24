@@ -25,8 +25,10 @@
             <div class="bg-gray-900 rounded-lg p-6 h-full">
               <div class="flex items-center mb-4">
                 <div class="w-16 h-16 bg-amber-900/20 rounded-lg p-2 mr-4">
-                  <img src="<?= ('../../assets' . $item['imagePath']) ?>" alt="<?= ($item['name']) ?>"
-                    class="w-full h-full object-contain">
+
+                  <img src="<?= ('../../assets/photos/shop/' . $item['imagePath']) ?>"
+                       alt="<?= ($item['name']) ?>"
+                       class="w-full h-full object-contain">
                 </div>
                 <h3 class="text-xl font-bold bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
                   <?= ($item['name']) ?>
@@ -53,8 +55,10 @@
             class="group p-[1.5px] bg-gradient-to-br from-amber-600/40 to-red-700/40 rounded-lg shadow-lg shadow-red-800/30 hover:shadow-amber-700/40 transition-all">
             <div class="bg-gray-900 rounded-lg p-6 h-full flex flex-col">
               <div class="relative mb-4">
-                <img src="<?= ('../../assets' . $item['imagePath']) ?>" alt="<?= ($item['name']) ?>"
-                  class="w-full h-48 object-cover rounded-lg transform group-hover:scale-105 transition-transform">
+
+                <img src="<?= ('../../assets/photos/shop/' . $item['imagePath']) ?>"
+                     alt="<?= ($item['name']) ?>"
+                     class="w-full h-128 object-cover rounded-lg transform group-hover:scale-105 transition-transform">
                 <div class="absolute top-2 right-2 bg-red-800/80 text-amber-300 px-3 py-1 rounded-full text-sm">
                   <?= ($item['price']) ?>
                 </div>
@@ -86,6 +90,7 @@
     </section>
   </div>
 </div>
+
 
 
 <?php include base_path('views/partials/footer.php') ?>
